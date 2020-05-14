@@ -1,0 +1,52 @@
+.navbar {
+  padding: 20px 0 26px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'OpenSans-Regular';
+}
+
+.logo {
+  font-family: 'GothamPro-Bold';
+  color: #2e3038;
+  font-size: 18px;
+}
+
+.logo > span:first-child::before {
+  content: '<';
+}
+
+.logo > span:first-child::after {
+  content: '>';
+}
+
+.logo > span:first-child::before,
+.logo > span:first-child::after {
+  color: #76c2af;
+}
+
+.contactsLink {
+  color: #8b92ab;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .contactsLink {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    font-size: 28px;
+    font-family: 'GothamPro-Black';
+  }
+
+  .contactsLink {
+    font-size: 22px;
+  }
+}
