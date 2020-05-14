@@ -40,8 +40,10 @@ const HomePage= ()=>{
                 <span className={styles.headerQuote}>{quote}</span>
                 <span className={styles.headerAuthor}>{author}</span>
                 </div>
-                <span className={styles.headerOnlineTests}>[ Онлайн тесты </span> <span className={styles.headerOnlineTest}>для студентов <a className={styles.headerLink} href='https://www.facebook.com/GoITeens' rel='noreferrer noopener' target="_blank">GoITeens</a>]</span>
-            </div>
+                <div className={styles.headerTestWrapper}>
+                <span className={styles.headerOnlineTests}>[ Онлайн тесты </span> <span className={styles.headerOnlineTest}>для студентов <a className={styles.headerLink} href='https://www.facebook.com/GoITeens' rel='noreferrer noopener' target="_blank">GoITeens </a>]</span>
+                </div>
+                </div>
         </div>
             </>
     )

@@ -43,31 +43,40 @@
 }
 
 .headerOnlineTests{
-    font-size: 18px;
+    font-size: 14px;
     font-family: "GothamPro-Bold";
     line-height: 1.2;
     display: block;
     text-align: center;
     color: rgb(255, 255, 255);
+    margin-bottom: 6px;
 }
 .headerOnlineTest{
-    font-size: 18px;
+    font-size: 14px;
     font-family: "GothamPro-Bold";
     line-height: 1.2;
     color: rgb(255, 255, 255);
-    display: inline;
+    display: block;
+    text-align: center;
+    padding-left: 18px;
 }
 .headerLink{
     color: rgb(252, 132, 44);
     display: inline;
+    border-bottom: 1px solid #5d5153;
 }
-.headerLink:after{
-    content: "";
-    display: block;
-    background-color: #5d5153;
-    width: 82px;
-    height: 1px;
-    margin: 0 auto;
+/*.headerLink:after{*/
+/*    content: "";*/
+/*    display: block;*/
+/*    background-color: #5d5153;*/
+/*    width: 82px;*/
+/*    height: 1px;*/
+/*    padding-left: 0;*/
+/*}*/
+
+.headerTestWrapper{
+    width: 222px;
+    margin-bottom: 50px;
 }
 
 
