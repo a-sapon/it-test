@@ -119,5 +119,35 @@
     text-align: center;
 }
 
+@media (min-width: 768px) {
+    .headerBack {
+        width: 655px;
+    }
 
+    .quoteWrapper{
+        width: 460px;
+    }
+    .headerQuote{
+        font-size: 30px;
+    }
+    .headerAuthor{
+        font-size: 16px;
+    }
+    .headerOnlineTests{
+        font-size: 18px;
+        display: inline;
+    }
+    .headerOnlineTest{
+        font-size: 18px;
+        display: inline;
+    }
+    .headerTestWrapper{
+        width: 420px;
+        display: block;
+        margin: 0 auto;
+    }
+    }
 
+@media (min-width: 1200px) {
+
+}
