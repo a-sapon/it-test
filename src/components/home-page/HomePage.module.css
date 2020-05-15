@@ -5,6 +5,7 @@
     width: 240px;
     height: 353px;
     padding-top: 50px;
+    margin-bottom: 30px;
 }
 .quoteWrapper{
     width: 222px;
@@ -29,7 +30,8 @@
     line-height: 1.2;
     display: block;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    height: 136px;
 }
 
 .headerAuthor{
@@ -39,7 +41,7 @@
     line-height: 1.2;
     display: block;
     text-align: center;
-    margin-bottom: 42px;
+    margin-bottom: 20px;
 }
 
 .headerOnlineTests{
@@ -65,20 +67,57 @@
     display: inline;
     border-bottom: 1px solid #5d5153;
 }
-/*.headerLink:after{*/
-/*    content: "";*/
-/*    display: block;*/
-/*    background-color: #5d5153;*/
-/*    width: 82px;*/
-/*    height: 1px;*/
-/*    padding-left: 0;*/
-/*}*/
 
 .headerTestWrapper{
     width: 222px;
     margin-bottom: 50px;
 }
 
+.headerList{
+    list-style: none;
+}
+
+.headerListItem{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 24px 40px 0px rgba(0, 0, 0, 0.13);
+    width: 240px;
+    height: 269px;
+    padding-top: 50px;
+}
+
+.headerListItem:not(:last-child){
+    margin-bottom: 30px;
+}
+
+.headerListItem:last-child{
+    margin-bottom: 56px;
+}
+
+.headerImage{
+    margin: 0 auto;
+    width: 71px;
+    height: 82px;
+    margin-bottom: 30px;
+}
+
+.langDescription{
+    font-size: 28px;
+    font-family: 'GothamPro-Bold';
+    color: rgb(46, 48, 56);
+    line-height: 1.2;
+    display: block;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.questionsCount{
+    font-size: 16px;
+    font-family: 'OpenSans-Regular';
+    color: rgb(139, 146, 171);
+    line-height: 1.2;
+    display: block;
+    text-align: center;
+}
 
 
 
