@@ -60,7 +60,7 @@
     font-size: 18px;
   }
 }
-@media (min-width: 1023px) {
+@media (min-width: 1200px) {
   .cards-user {
     padding: 40px 72px;
   }
