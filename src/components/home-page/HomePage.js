@@ -41,10 +41,6 @@ const HomePage= (props)=>{
         fetch();
     }, [])
 
-    //
-    // const {testsList, isLoading, error}=props;
-    // console.log(testsList)
-
     return (
         <>
             {props.state!==undefined && props.state.isLoading ? (<div>Loading...</div>) : (

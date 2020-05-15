@@ -129,6 +129,7 @@
     }
     .headerQuote{
         font-size: 30px;
+        height: 140px;
     }
     .headerAuthor{
         font-size: 16px;
@@ -140,14 +141,45 @@
     .headerOnlineTest{
         font-size: 18px;
         display: inline;
+        padding: 0;
     }
     .headerTestWrapper{
         width: 420px;
         display: block;
         margin: 0 auto;
     }
+
+    .headerList{
+       display: flex;
+        flex-wrap: wrap;
+    }
+    .headerListItem{
+        width: 316px;
+    }
+
+    .headerListItem:first-child {
+        margin-right: 23px;
+    }
     }
 
 @media (min-width: 1200px) {
+    .headerBack {
+        width: 1080px;
+    }
+    .headerList{
+        display: flex;
+    }
+    .headerListItem{
+        width: 336px;
+    }
+    .headerListItem:not(:last-child){
+        margin-right: 36px;
+    }
 
+    .quoteWrapper{
+        width: 480px;
+    }
+    .headerQuote{
+        height: 148px;
+    }
 }
