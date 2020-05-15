@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {testsLoaded, testsRequested, testsError} from '../../redux/actionCreators'
 import styles from './HomePage.module.css';
 import quotes from '../quotesDb';
+import TestCard from '../test-card/TestCard';
 
 const HomePage= (props)=>{
     const [quote, setQuote]=useState(quotes[0].quote)
@@ -36,7 +36,6 @@ const HomePage= (props)=>{
             const {testsLoaded, testsRequested, testsError} = props;
             testsRequested();
             let data = await axios.get('https://test.goit.co.ua/api/tests').then(data => testsLoaded(data)).catch(err => testsError(err))
-            const arr=data.payload.data.languages;
         }
         fetch();
     }, [])
@@ -57,15 +56,7 @@ const HomePage= (props)=>{
                 <span className={styles.headerOnlineTests}>[ Онлайн тесты </span> <span className={styles.headerOnlineTest}>для студентов <a className={styles.headerLink} href='https://www.facebook.com/GoITeens' rel='noreferrer noopener' target="_blank">GoITeens </a>]</span>
                 </div>
                 </div>
-           <ul className={styles.headerList}>
-            {props.state!==undefined && props.state.testsList!==undefined && props.state.testsList.data!==undefined && props.state.testsList.data.languages.map(el=>{return (<li className={styles.headerListItem} key={el.languageId}>
-                <Link to='/'>
-                <img className={styles.headerImage} src={el.image} alt={el.title}/>
-                <span className={styles.langDescription}>{el.title}</span>
-                <span className={styles.questionsCount}>{el.pullQuestions} вопросов</span>
-                </Link>
-            </li>) })}
-        </ul>
+            <TestCard/>
         </div> )}
             </>
     )
