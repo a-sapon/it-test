@@ -9,7 +9,7 @@ const AnswersList = ({ data, handleAnswer, handleContinuation }) => {
   if(!image) styles.answersListContainer = { marginTop: "44px" }
 
   return (
-    <div style={{position: "relative"}}>
+    <div className={css.baseContainer}>
 
       {image && (
         <div className={css.imgContainer}>
@@ -42,11 +42,7 @@ const AnswersList = ({ data, handleAnswer, handleContinuation }) => {
         </div>
       </div>
 
-      {!image && (
-        <>
-          <div className={css.orangeBG}> </div>
-        </>
-      )}
+      {!image && (<div className={css.orangeBG}> </div>)}
       
     </div>
   );
