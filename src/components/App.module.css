@@ -1,12 +1,13 @@
 .container {
-    /* width: 280px; */
     padding: 0 20px;
     margin: 0 auto;
+    position: relative;
   }
   
   @media (min-width: 768px) {
     .container {
-      width: 695px;
+      width: 696px;
+      padding: 0;
     }
   }
   

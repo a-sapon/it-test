@@ -1,0 +1,75 @@
+.hiddenForMobile {
+    display: none;
+}
+
+.hdrContainer {
+    font-family: "GothamPro", sans-serif;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 26px;
+}
+
+.hdrTitle {
+    font-size: 14px;
+    color: #2e3038;
+    padding: 24px 0 0 24px;
+    margin: 0 0 24px;
+}
+
+.hrdCountTitle {
+    font-size: 16px;
+    color: #fc842c;
+    text-align: center;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .hiddenForMobile {
+        display: block;
+    }
+
+    .hdrContainer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 42px;
+    }
+
+    .hdrTitle,
+    .hrdCountTitle {
+        font-size: 22px;
+    }
+
+    .hdrTitle {
+        color: rgba(139, 146, 171, 0.502);
+        margin: 0;
+        padding: 0;
+    }
+
+    .hrdCountTitle {
+        display: flex;
+        border-bottom: 2px solid #fc842c;
+        width: 140px;
+        line-height: 1.8;
+        padding-left: 8px;
+    }
+
+    .hdrContainer span {
+        margin-right: 6px;
+    }
+
+    .finishTestBtn {
+        font-family: "Open Sans", sans-serif;
+        font-size: 14px;
+        background-color: #fc832c00;
+        border-radius: 16px;
+        border: 1px solid #fc842c;
+        color: #fc842c;
+        width: 136px;
+        height: 32px;
+    }
+
+
+}
+
+@media screen and (min-width: 1280px) {}

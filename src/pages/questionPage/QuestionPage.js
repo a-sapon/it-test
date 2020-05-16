@@ -4,6 +4,7 @@ import QuestionHdr from "../../components/questionHdr/QuestionHdr";
 import QuestionCard from "../../components/questionCard/QuestionCard";
 import { services } from "../../services/api";
 import QuestionModal from "../../components/questionModal/QuestionModal";
+import css from './QuestionPage.module.css'
 
 const QuestionPage = ({ languageId }) => {
   /**
@@ -75,10 +76,11 @@ const QuestionPage = ({ languageId }) => {
   return (
     <>
       {questionData !== null && 
-        <div>
+        <div className={css.questionPageContainer}>
           <QuestionHdr data={questionHdr} handleClick={handleOpeningModal}/>
           <QuestionCard data={questionData} />
-          <button onClick={handleClick}>Ок, дальше</button>
+          {/* <button onClick={handleClick}>Ок, дальше</button> */}
+          <div className={css.greyBG}></div>
         </div>
       }
 

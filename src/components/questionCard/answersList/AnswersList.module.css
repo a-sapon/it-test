@@ -1,0 +1,127 @@
+.imgContainer {
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.imgContainer img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.answersListContainer {
+    background-color: #ffffff;
+    box-shadow: 0px 6px 12px 0px #00000026;
+    padding: 34px 24px 34px 44px;
+    margin: 0 auto;
+}
+
+.answersListContainer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.answersListContainer li {
+    display: flex;
+    align-items: center;
+}
+
+.answersListContainer li:not(:last-child) {
+    margin-bottom: 18px;
+}
+
+.answersListContainer input {
+    margin: 0 14px 0 0;
+}
+
+.answersListContainer p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #2e3038;
+    line-height: 1.286;
+    margin: 0;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    background-color: #f2f2f2;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 28px 0;
+}
+
+.giveAnswerBtn,
+.skipAnswerBtn {
+    border-radius: 16px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    width: 136px;
+    height: 32px;
+}
+
+.giveAnswerBtn {
+    background-color: #fc842c;
+    box-shadow: 0px 6px 10px 0px #fc842c54;
+    border: none;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.skipAnswerBtn {
+    background-color: #ffffff00;
+    border: 1px solid #8b92ab;
+    color: #8b92ab;
+
+}
+
+@media screen and (min-width: 768px) {
+
+    .imgContainer {
+        margin-bottom: 22px;
+    }
+
+    .answersListContainer {
+        box-shadow: 0px 24px 40px 0px #00000021;
+        position: relative;
+        padding: 54px 62px 120px 114px;
+        margin: 0;
+        z-index: 30;
+    }
+
+    .btnContainer {
+        justify-content: start;
+        background-color: #f2f2f200;
+        width: 50%;
+        left: 114px;
+        bottom: 58px;
+        padding: 0;
+    }
+
+    .giveAnswerBtn,
+    .skipAnswerBtn {
+        width: 140px;
+        height: 32px;
+    }
+
+    .giveAnswerBtn {
+        margin-right: 22px;
+    }
+
+    .orangeBG {
+        background-color: rgb(252, 132, 44);
+        position: absolute;
+        right: -22px;
+        top: -20px;
+        width: 600px;
+        height: 300px;
+        z-index: -10;
+    }
+}
+
+@media screen and (min-width: 1280px) {}
