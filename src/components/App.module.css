@@ -1,0 +1,17 @@
+.container {
+    /* width: 280px; */
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      width: 695px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 1120px;
+    }
+  }
