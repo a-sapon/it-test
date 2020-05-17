@@ -1,6 +1,7 @@
 // import React, {useEffect, useRef} from 'react';
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import css from './QuestionModal.module.css'
 
 const QuestionModal = ({onClose}) => {
     // const backdropRef = useRef(null);
@@ -26,11 +27,13 @@ const QuestionModal = ({onClose}) => {
 
     return(
         // <div className="Backdrop" ref={backdropRef} onClick={handleClick}>
-        <div className="Backdrop" onClick={handleClick}>
-            <div className="Content">
+        <div className={css.backdrop} onClick={handleClick}>
+            <div className={css.content}>
                 <p>Вы действительно хотите завершить тест?</p>
-                <button onClick={onSubmit}>Завершить</button>
-                <button onClick={onClose}>Продолжить</button>
+                <div>
+                    <button className={css.exitBtn} onClick={onSubmit}>Завершить</button>
+                    <button className={css.continueBtn} onClick={onClose}>Продолжить</button>
+                </div>
             </div>
         </div>
     )

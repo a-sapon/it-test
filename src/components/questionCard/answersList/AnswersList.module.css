@@ -1,12 +1,13 @@
-.imgContainer {
+.questionImgContainer {
     width: 100%;
     margin-bottom: 14px;
 }
 
-.imgContainer img {
+.questionImgContainer img {
     display: block;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
 }
 
 .answersListContainer {
@@ -86,7 +87,7 @@
         position: relative;
     }
 
-    .imgContainer {
+    .questionImgContainer {
         margin-bottom: 22px;
     }
 
@@ -128,4 +129,24 @@
     }
 }
 
-@media screen and (min-width: 1280px) {}
+@media screen and (min-width: 1280px) {
+    .baseContainer {
+        max-width: 690px;
+    }
+
+    .giveAnswerBtn {
+        box-shadow: none;
+    }
+    
+    .giveAnswerBtn:hover,
+    .giveAnswerBtn:focus {
+        transform: scale(1.1);
+        box-shadow: 0px 6px 10px 0px #fc842c54;
+    }
+
+    .skipAnswerBtn:hover,
+    .skipAnswerBtn:focus {
+        transform: scale(1.1);
+        box-shadow: 0px 6px 10px 0px #8b92ab;
+    }
+}

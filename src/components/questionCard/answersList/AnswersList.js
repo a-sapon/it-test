@@ -6,13 +6,15 @@ const AnswersList = ({ data, handleAnswer, handleContinuation }) => {
   const { answers, image } = data;
   const styles = {};
 
+  const qwerty = false;
+
   if(!image) styles.answersListContainer = { marginTop: "44px" }
 
   return (
     <div className={css.baseContainer}>
 
       {image && (
-        <div className={css.imgContainer}>
+        <div className={css.questionImgContainer}>
           <img src={process.env.REACT_APP_STATIC_PAGE + image} alt="question" />
         </div>
       )}
@@ -32,14 +34,21 @@ const AnswersList = ({ data, handleAnswer, handleContinuation }) => {
             </li>
           ))}
         </ul>
-        <div className={css.btnContainer}>
+
+        {qwerty && (
+          <div className={css.catImgContainer}>
+            <img src={"./imageWithCat"} alt="cat_helper"/>
+          </div>
+        )}
+
+        {!qwerty && (<div className={css.btnContainer}>
           <button className={css.giveAnswerBtn} onClick={handleAnswer}>
             Ответить
           </button>
           <button className={css.skipAnswerBtn} onClick={handleContinuation}>
             Пропустить
           </button>
-        </div>
+        </div>)}
       </div>
 
       {!image && (<div className={css.orangeBG}> </div>)}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Question from "./question/Question";
 import AnswersList from "./answersList/AnswersList";
 // import Explanations from './';
-import css from './QuestionCard.module.css'
+// import css from './QuestionCard.module.css'
 
 // answers: Array(7)
 //      0: {_id: "5d39e777c7de0f78024cf070", answerNumber: 1, answerText: "На консоль выведется "312""}
