@@ -1,0 +1,132 @@
+.sectionTestPage {
+  background-color: #f2f2f2;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageTitle {
+  margin-top: 2.625rem;
+  margin-bottom: 1rem;
+  width: 8.625rem;
+  height: 9.4375rem;
+}
+.testAbout {
+  width: 100%;
+  padding: 0 28px;
+}
+.testAbout div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.testAbout div > p {
+  font-family: OpenSans-Regular;
+  font-size: 14px;
+}
+.testAbout div > span {
+  font-family: OpenSans-Regular;
+  font-size: 14px;
+}
+
+.btnBack {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  padding-bottom: 2.7125rem;
+  color: #a4aabd;
+  text-decoration: none;
+  font-family: Open Sans;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 400;
+}
+.btnBack p {
+  font-family: OpenSans-Regular;
+  font-size: 14px;
+}
+
+.btnBack::before {
+  content: url(../../assets/icons/return.svg);
+  width: 15px;
+  height: 10px;
+  vertical-align: middle;
+  padding-right: 0.9rem;
+}
+
+.textAboutTest {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.textAboutTest h2 {
+  font-family: GothamPro-Bold;
+  font-size: 30px;
+  margin-top: 60px;
+  margin-bottom: 35px;
+}
+.textDesciption {
+  width: 100%;
+  text-indent: 20px;
+  text-align: justify;
+  line-height: 1.65rem;
+  font-family: OpenSans-Light;
+  font-size: 14px;
+  color: #626369;
+}
+
+.btnGotoStart {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.375rem;
+  margin-bottom: 2.375rem;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  width: 178px;
+  background-color: #fc842c;
+  padding: 0.625rem 2.5rem;
+  border-radius: 1.875rem;
+  box-shadow: 1px 4px 13px -2px #fc842c;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .textDesciption {
+    padding: 0 45px;
+  }
+  .testAbout {
+    width: 340px;
+  }
+  .imageTitle {
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 980px) {
+  .sectionTestPage {
+    width: 454px;
+    padding-top: 60px;
+  }
+  .textAboutTest {
+    width: 490px;
+    padding: 10px;
+  }
+  .textDesciption {
+    padding: 10px;
+  }
+  .sectionDescription {
+    display: flex;
+    justify-content: space-around;
+  }
+}

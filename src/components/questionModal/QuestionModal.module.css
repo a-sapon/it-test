@@ -1,0 +1,92 @@
+.backdrop {
+    background-color: #1a1a1b7d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: calc((100vh - 240px) / 2) 0;
+    z-index: 40;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 18px;
+    width: calc(100% - 40px);
+    height: 240px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.content p { 
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2e3038;
+    line-height: 1.286;
+    margin: 0 0 36px;
+    padding: 0px 20px 0;
+}
+
+.exitBtn,
+.continueBtn {
+    border-radius: 16px;
+    border: none;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    color: white;
+    width: 110px;
+    height: 32px;
+}
+
+.exitBtn {
+    margin-right: 10px;
+    background-color: red;
+}
+
+.continueBtn {
+    background-color: blue;
+}
+
+@media screen and (min-width: 768px) {
+    .content {
+        width: calc(100% - 20vw);
+    }
+
+    .content p {
+        font-size: 18px;
+    }
+
+    .exitBtn {
+        margin-right: 26px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .backdrop {
+        padding: calc((100vh - 32vh) / 2) 0;
+    }
+    
+    .content {
+        width: 46vw;
+        height: 240px;
+    }
+    
+    .exitBtn,
+    .continueBtn {
+        width: 136px;
+        height: 32px;
+    }
+
+    .exitBtn:hover,
+    .exitBtn:focus,
+    .continueBtn:hover, 
+    .continueBtn:focus {
+        transform: scale(1.1);
+    }
+}
