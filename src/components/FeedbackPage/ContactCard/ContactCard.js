@@ -1,40 +1,14 @@
 import React from "react";
 import "./ContactCard.css";
 import shortid from "shortid";
-import { Link } from "react-router-dom";
-
-const prop = [
-  {
-    photo: "https://i.ibb.co/HdFXj9W/anna.png",
-    name: "Анна Сапон",
-    email: " sapon.anya@gmail.com",
-    speciality: "Front-end Developer",
-    linkedin: "https://www.linkedin.com/in/anna-sapon/",
-    id: shortid(),
-  },
-  {
-    photo: "https://i.ibb.co/MBvX1Hb/tania.png",
-    name: " Татьяна Шевцова",
-    email: "tshevtsova.main@gmail.com",
-    speciality: "Front-end Developer",
-    linkedin: "https://www.linkedin.com/in/taniashevtsova/",
-    id: shortid(),
-  },
-  {
-    photo: "https://i.ibb.co/dpNVv2c/photo.jpg",
-    name: " Роман Свительский",
-    email: "roman.svitelskyi@gmail.com",
-    speciality: "Front-end Developer",
-    linkedin: "https://www.linkedin.com/in/taniashevtsova/",
-    id: shortid(),
-  },
-];
+import arr from "../contact.json"
 
 const ContactCard = () => {
-  const arr = prop;
+
+  const id = shortid();
   return (
     <ul className="cards">
-      {arr.map(({ name, email, speciality, linkedin, id, photo }) => (
+      {arr.map(({ name, email, speciality, linkedin, photo }) => (
         <li key={id} className="cards-user">
           <div className="cards-user__wrap">
             <div className="wrap-img">
@@ -46,9 +20,9 @@ const ContactCard = () => {
               <b> email: </b>
               <span>{email}</span>
             </span>
-            <Link className="cards-user__linkedin" to={linkedin}>
+            <a className="cards-user__linkedin" href={linkedin}>
               My linkedin
-            </Link>
+            </a>
           </div>
         </li>
       ))}

@@ -1,0 +1,44 @@
+[
+  {
+    "photo": "https://i.ibb.co/HdFXj9W/anna.png",
+    "name": "Анна Сапон",
+    "email": " sapon.anya@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/anna-sapon/"
+  },
+  {
+    "photo": "https://i.ibb.co/MBvX1Hb/tania.png",
+    "name": " Татьяна Шевцова",
+    "email": "tshevtsova.main@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/taniashevtsova/"
+  },
+  {
+    "photo": "https://i.ibb.co/dpNVv2c/photo.jpg",
+    "name": " Роман Свительский",
+    "email": "roman.svitelskyi@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/roman-svitelskyi-ab65841a4/"
+  },
+  {
+    "photo": "ht",
+    "name": " Сергей Барышеиков",
+    "email": "цццццццц@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com"
+  },
+  {
+    "photo": "https",
+    "name": " Сергей Зелинский",
+    "email": "фффффффффффффффф@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/"
+  },
+  {
+    "photo": "http",
+    "name": " Евгений Андруша",
+    "email": "ффффффффф@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/"
+  }
+]

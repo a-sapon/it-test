@@ -56,7 +56,7 @@
   .cards {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 50px 0;
   }
   .cards-user__wrap {
@@ -65,7 +65,7 @@
   .cards-user {
     padding: 40px 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin-bottom: 26px;
+    margin-bottom: 34px;
   }
 
   .cards-user__name {
@@ -76,7 +76,11 @@
   }
 }
 @media (min-width: 1200px) {
+  .cards {
+    justify-content: space-between;
+  }
   .cards-user {
     padding: 40px 14px;
+    margin-bottom: 40px;
   }
 }
