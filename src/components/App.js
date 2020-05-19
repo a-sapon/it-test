@@ -12,7 +12,6 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <HomePage />
-          {/* Here goes the Home Page */}
         </Route>
         <Route path='/test'>{/* Test Description Page */}</Route>
         <Route path='/question'>{/* Question Page */}</Route>

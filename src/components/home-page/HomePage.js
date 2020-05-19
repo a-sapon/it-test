@@ -7,7 +7,7 @@ import {
   testsError,
 } from '../../redux/actionCreators';
 import styles from './HomePage.module.css';
-import quotes from '../quotesDb';
+import quotes from '../quotes.json';
 import TestCard from '../test-card/TestCard';
 
 const HomePage = (props) => {
@@ -53,16 +53,15 @@ const HomePage = (props) => {
           <div className={styles.headerBack}>
             <span className={styles.headerQuoteIcon}>
               <span style={{ display: 'none' }}>
-                Icons made by{' '}
+                Icons made by
                 <a
                   href='https://www.flaticon.com/authors/pixel-perfect'
                   title='Pixel perfect'
                 >
                   Pixel perfect
-                </a>{' '}
-                from{' '}
+                </a>
+                from
                 <a href='https://www.flaticon.com/' title='Flaticon'>
-                  {' '}
                   www.flaticon.com
                 </a>
               </span>
@@ -72,7 +71,7 @@ const HomePage = (props) => {
               <span className={styles.headerAuthor}>{author}</span>
             </div>
             <div className={styles.headerTestWrapper}>
-              <span className={styles.headerOnlineTests}>[ Онлайн тесты </span>{' '}
+              <span className={styles.headerOnlineTests}>[ Онлайн тесты </span>
               <span className={styles.headerOnlineTest}>
                 для студентов{' '}
                 <a
