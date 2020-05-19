@@ -1,10 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Navbar } from './Navbar/Navbar';
-import AllResults from './AllResults/AllResults';
-import styles from './App.module.css';
 import HomePage from './home-page/HomePage';
 import TestPage from './test-page/testPage';
+import QuestionPage from '../pages/questionPage/QuestionPage';
+import AllResults from './AllResults/AllResults';
+import styles from './App.module.css';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <Route path='/test'>
           <TestPage />
         </Route>
-        <Route path='/question'>{/* Question Page */}</Route>
+        <Route path='/question'>
+          <QuestionPage />
+        </Route>
         <Route path='/result'>
           <AllResults />
         </Route>
