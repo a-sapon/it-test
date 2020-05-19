@@ -13,7 +13,14 @@ const TestCard = (props) => {
         props.state.testsList.data.languages.map((el) => {
           return (
             <li className={styles.headerListItem} key={el.languageId}>
-              <Link to='/'>
+              <Link
+                to={{
+                  pathname: `/test`,
+                  state: {
+                    item: el,
+                  },
+                }}
+              >
                 <img
                   className={styles.headerImage}
                   src={el.image}

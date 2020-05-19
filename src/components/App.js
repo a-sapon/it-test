@@ -4,6 +4,7 @@ import { Navbar } from './Navbar/Navbar';
 import AllResults from './AllResults/AllResults';
 import styles from './App.module.css';
 import HomePage from './home-page/HomePage';
+import TestPage from './test-page/testPage';
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-        <Route path='/test'>{/* Test Description Page */}</Route>
+        <Route path='/test'>
+          <TestPage />
+        </Route>
         <Route path='/question'>{/* Question Page */}</Route>
         <Route path='/result'>
           <AllResults />
