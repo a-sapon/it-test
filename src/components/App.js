@@ -2,7 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Navbar } from './Navbar/Navbar';
 import styles from './App.module.css';
-import HomePage from './home-page/HomePage'
+import HomePage from './home-page/HomePage';
+import TestPage from "./test-page/testPage"
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
             <HomePage />
           {/* Here goes the Home Page */}
         </Route>
-        <Route path='/test'>{/* Test Description Page */}</Route>
+        <Route path='/test'><TestPage/>{/* Test Description Page */}</Route>
         <Route path='/question'>{/* Question Page */}</Route>
         <Route path='/result'>{/* Result Page */}</Route>
         <Route path='/feedback'>{/* Feedback Page */}</Route>
