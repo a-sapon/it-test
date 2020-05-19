@@ -5,6 +5,7 @@ import HomePage from './home-page/HomePage';
 import TestPage from './test-page/testPage';
 import QuestionPage from '../pages/questionPage/QuestionPage';
 import AllResults from './AllResults/AllResults';
+import FeedbackPage from './FeedbackPage/FeedbackPage';
 import styles from './App.module.css';
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path='/result'>
           <AllResults />
         </Route>
-        <Route path='/feedback'>{/* Feedback Page */}</Route>
+        <Route path='/feedback'>
+          <FeedbackPage />
+        </Route>
       </Switch>
     </div>
   );
