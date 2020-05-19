@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {testsLoaded, testsRequested, testsError} from '../../redux/actionCreators'
@@ -8,8 +8,7 @@ import TestCard from '../test-card/TestCard';
 
 const HomePage= (props)=>{
     const [quote, setQuote]=useState(quotes[0].quote)
-    const [author, setAuthor]=useState(quotes[0].author)
-
+    const [author, setAuthor]=useState(quotes[0].author);
 
     const getRandomQuote=()=>{
         const randomQuote=Math.floor(Math.random()*quotes.length);
@@ -26,9 +25,11 @@ const HomePage= (props)=>{
                getRandomQuote()
             shuffleRandomQuote(quotes)
         }, 7000)
-        return ()=>clearInterval(id);
+
+        return ()=>{clearInterval(id); };
 
         }
+
     , )
 
     useEffect( ()=>{
