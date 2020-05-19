@@ -9,6 +9,7 @@ import {
 import styles from './HomePage.module.css';
 import quotes from '../quotes.json';
 import TestCard from '../test-card/TestCard';
+import Spinner from '../Spinner/Spinner';
 
 const HomePage = (props) => {
   const [quote, setQuote] = useState(quotes[0].quote);
@@ -47,7 +48,7 @@ const HomePage = (props) => {
   return (
     <>
       {props.state !== undefined && props.state.isLoading ? (
-        <div>Loading...</div>
+        <Spinner />
       ) : (
         <div className='header-wrapper'>
           <div className={styles.headerBack}>
