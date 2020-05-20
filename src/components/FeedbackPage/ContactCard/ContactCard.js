@@ -2,7 +2,6 @@ import React from "react";
 import "./ContactCard.css";
 import shortid from "shortid";
 import arr from "../contact.json";
-import { Link } from "react-router-dom";
 
 const ContactCard = () => {
   const id = shortid();
