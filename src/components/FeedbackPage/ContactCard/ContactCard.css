@@ -5,9 +5,14 @@
 }
 .cards-user {
   display: flex;
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 40px 0;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 18%,
+    rgba(107, 161, 198, 1) 100%
+  );
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  padding: 40px 2px;
   margin-bottom: 30px;
 }
 .cards-user__wrap {
@@ -19,13 +24,12 @@
 }
 .wrap-img {
   width: 100px;
-  height: 100px;
+  margin-bottom: 20px;
 }
 .cards-user__img {
   max-width: 100%;
   height: auto;
-  border-radius: 50%;
-  margin-bottom: 20px;
+  border-radius: 25%;
 }
 .cards-user__name {
   font-family: "OpenSans-Bold";
@@ -82,5 +86,8 @@
   .cards-user {
     padding: 40px 14px;
     margin-bottom: 40px;
+  }
+  .wrap-img {
+    width: 115px;
   }
 }

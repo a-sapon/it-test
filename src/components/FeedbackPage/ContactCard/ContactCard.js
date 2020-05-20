@@ -1,10 +1,10 @@
 import React from "react";
 import "./ContactCard.css";
 import shortid from "shortid";
-import arr from "../contact.json"
+import arr from "../contact.json";
+import { Link } from "react-router-dom";
 
 const ContactCard = () => {
-
   const id = shortid();
   return (
     <ul className="cards">
@@ -16,11 +16,11 @@ const ContactCard = () => {
             </div>
             <span className="cards-user__name">{name}</span>
             <span className="cards-user__special">{speciality}</span>
-            <span className="cards-user__email">
+            <p className="cards-user__email">
               <b> email: </b>
               <span>{email}</span>
-            </span>
-            <a className="cards-user__linkedin" href={linkedin}>
+            </p>
+            <a className="cards-user__linkedin" href={linkedin} target="_blank">
               My linkedin
             </a>
           </div>
