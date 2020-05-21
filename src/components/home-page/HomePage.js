@@ -7,7 +7,7 @@ import {
   testsError,
 } from '../../redux/actionCreators';
 import styles from './HomePage.module.css';
-import quotes from '../quotes.json';
+import quotes from '../../db/quotes.json';
 import TestCard from '../test-card/TestCard';
 import Spinner from '../Spinner/Spinner';
 
