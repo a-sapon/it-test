@@ -1,0 +1,51 @@
+[
+  {
+    "photo": "https://i.ibb.co/N7TZCt5/anna1.png",
+    "name": "Анна Сапон",
+    "email": " sapon.anya@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/anna-sapon/"
+  },
+  {
+    "photo": "https://i.ibb.co/yqrY4JX/tania1.png",
+    "name": " Татьяна Шевцова",
+    "email": "tshevtsova.main@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/taniashevtsova/"
+  },
+  {
+    "photo": "https://i.ibb.co/dpNVv2c/photo.jpg",
+    "name": " Роман Свительский",
+    "email": "roman.svitelskyi@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/roman-svitelskyi-ab65841a4/"
+  },
+  {
+    "photo": "https://i.ibb.co/5cSgD3c/PHOTO-CONTACT.png",
+    "name": " Сергей Барышников",
+    "email": "baryshnikov.serhii@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/serhii-baryshnikov-b24b26194/"
+  },
+  {
+    "photo": "https://i.ibb.co/mG4CSns/sz1.png",
+    "name": " Сергей Зелинский",
+    "email": "zelinsky.serega+it@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/sergey-zelinsky/"
+  },
+  {
+    "photo": "https://i.ibb.co/2SgRsH9/evgen.png",
+    "name": " Евгений Андруша",
+    "email": "andrushaes@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/evgenii-andrusha-19a75a1a4/"
+  },
+  {
+    "photo": "https://i.ibb.co/X7fT04P/jaric-03.png",
+    "name": " Ярослав Косыця",
+    "email": "jaroslavkositsa@gmail.com",
+    "speciality": "Front-end Developer",
+    "linkedin": "https://www.linkedin.com/in/yaroslav-kosytsia/"
+  }
+]
