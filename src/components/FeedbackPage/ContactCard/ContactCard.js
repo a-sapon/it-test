@@ -20,7 +20,7 @@ const ContactCard = () => {
               <span>{email}</span>
             </p>
             <a className="cards-user__linkedin" href={linkedin} target="_blank">
-              My linkedin
+              My LinkedIn
             </a>
           </div>
         </li>
