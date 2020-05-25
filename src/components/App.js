@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Navbar } from './Navbar/Navbar';
 import HomePage from './home-page/HomePage';
 import TestPage from './test-page/testPage';
-import QuestionPage from '../pages/questionPage/QuestionPage';
+import QuestionPage from './questionPage/QuestionPage';
 import AllResults from './AllResults/AllResults';
 import FeedbackPage from './FeedbackPage/FeedbackPage';
 import styles from './App.module.css';
