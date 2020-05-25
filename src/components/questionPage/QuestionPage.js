@@ -1,101 +1,216 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as testOperations from '../../redux/test/testOperations';
+import * as testSelectors from '../../redux/test/testSelectors';
 import PropTypes from "prop-types";
-import QuestionHdr from "../../components/questionHdr/QuestionHdr";
-import QuestionCard from "../../components/questionCard/QuestionCard";
-import { services } from "../../services/api";
-import QuestionModal from "../../components/questionModal/QuestionModal";
-import css from './QuestionPage.module.css'
+import QuestionHdr from "../questionHdr/QuestionHdr";
+import QuestionCard from "../questionCard/QuestionCard";
+import QuestionModal from "..//questionModal/QuestionModal";
+import css from './QuestionPage.module.css';
 
-const QuestionPage = ({ languageId }) => {
+
+const QuestionPage = (props) => { 
+  
+  const { 
+      location: { state }, 
+      userId,
+      fetchStartingQuestion,
+      fetchNextQuestionAndGiveAnswer,
+      fetchNextQuestionAndSkipAnswer
+    } = props;
+
+  let history = useHistory();
+    
+    
   /**
-   *  State
-   */
-  const [questionHdr, setQuestionHdr] = useState(null);
-  const [questionData, setQuestionData] = useState(null);
+  *  State
+  */
+  const [hdrData, setHdrData] = useState(null);
+  const [cardData, setCardData] = useState(null);
+  const [tmpData, setTmpData] = useState(null);
 
-  const [userId, setUserId] = useState(null);
+  const [resultData, setResultData] = useState({});
+  
+  const [answerNumber, setAnswerNumber] = useState(0);
+
+  const [clickValue, setClickValue] = useState("");
+
+
+  /**
+   *  Final result redirect
+   */
+  const getFinalResultCallback = useCallback(
+    (data) => {
+      if(!data.finalResult) return;
+    
+      localStorage.setItem('sessionDataTest', JSON.stringify(null));
+      history.push("/result");
+    }, [ history ],
+  );
+
 
   /**
    *  ComponentDidMount analog
    */
   useEffect(() => {
     async function fetchData() {
-      const data = await services.fetchQuestion(languageId);
 
-      const { allQuestionsCount, languageTitle, questionNumber, userId } = data;
+      if(state === undefined || !("id" in state)) return history.push("/")
+    
+      const data = await fetchStartingQuestion(state.id);
+      dataRecorder(data);
 
-      setQuestionHdr({ allQuestionsCount, languageTitle, questionNumber });
-      setQuestionData(data.question);
+    }
+    
+    const data = JSON.parse(localStorage.getItem('sessionDataTest'));
+    if(data && data.result) delete data.result;
 
-      setUserId(userId);
+    if(!data) fetchData();
+    
+    data && dataRecorder(data);
+
+    data && getFinalResultCallback(data);
+
+  }, [ state, history, fetchStartingQuestion, getFinalResultCallback ]);
+
+
+  /**
+   * Data State Recording Assistant
+   */
+  const dataRecorder = function(data) {
+    const { allQuestionsCount, languageTitle, questionNumber, result } = data;
+
+    result && setResultData(result);
+    
+    setHdrData({ allQuestionsCount, languageTitle, questionNumber });
+    setCardData({...data.question});
+    setAnswerNumber(0);
+
+    localStorage.setItem('sessionDataTest', JSON.stringify(data));
+  }
+
+
+  /**  
+   * Scroll function
+   */
+  const scrollTop = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } 
+
+  const scrollDown = function() {
+    window.scrollTo({ top: 2000, behavior: 'smooth' });
+  } 
+
+
+  /**
+   * Answers data handlers
+   */
+  const handleChange = (e) => {
+    setAnswerNumber(e.target.value);
+  }
+      
+  const handleClick = (e) => {
+    if(e.target.name !== "next" && !tmpData) return setClickValue(e.target.name);
+    
+    dataRecorder(tmpData);
+    setResultData({});
+    setTmpData(null);
+
+    getFinalResultCallback(tmpData);
+
+    handleVisibleResult();
+
+    scrollTop();
+  }
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const params = { 
+      userAnswerNumber: answerNumber, 
+      questionNumber: hdrData.questionNumber, 
+      questionId: cardData.questionId
+    };
+
+    if(clickValue === "skip") {
+      const data = await fetchNextQuestionAndSkipAnswer(userId, params);
+
+      dataRecorder(data);
+
+      getFinalResultCallback(data);
+      
+      scrollTop();
     }
 
-    fetchData();
-  }, [languageId]);
+    if(answerNumber && !tmpData && clickValue === "answer") {
+      const newTmpData = await fetchNextQuestionAndGiveAnswer(userId, params);
+
+      setTmpData(newTmpData);
+      setResultData(newTmpData.result)
+      handleVisibleResult();
+      scrollDown();
+    }
+  }
+
+  
+  /**
+   * Result Visibility Handler
+   */
+  const [isResultVisible, setIsResultVisible] = useState(false);
+
+  const handleVisibleResult = () => {
+    setIsResultVisible(!isResultVisible);
+  }
+
 
   /**
    * Opening modal window handler
    */
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleClick = async () => {
-    // const params = { 
-    //   userAnswerNumber, 
-    //   questionNumber, 
-    //   questionId 
-    // };
-
-    // const data = await services.giveAnswer(userId, params);
-    
-    console.log("questionData", questionData);
-    console.log("userId", userId);
-  };
-
-  const handleOpeningModal = () => {
-    setIsModalOpen(true);
+  
+  const handleModalWindow = () => {
+    setIsModalOpen(!isModalOpen);
   }
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  }
-
-  // useEffect(() => {
-    // async function fetchData() {
-    //   const params = { userAnswerNumber, questionNumber, questionId };
-
-    //   const data = await services.giveAnswer(questionData.userId, params);
-
-    //   setQuestionData(data);
-    // };
-
-    // fetchData();
-  // }, [])
-
-  // const {question} = questionData;
-
+  hdrData && console.log('hdrData.questionNumber', hdrData.questionNumber)
+  
   return (
     <>
-      {questionData !== null && 
+      {cardData !== null && 
         <div className={css.questionPageContainer}>
-          <QuestionHdr data={questionHdr} handleClick={handleOpeningModal}/>
-          <QuestionCard data={questionData} />
-          {/* <button onClick={handleClick}>Ок, дальше</button> */}
+          <QuestionHdr data={hdrData} handleClick={handleModalWindow}/>
+          <QuestionCard data={{...cardData, isResultVisible, handleChange, handleSubmit, handleClick}} result={resultData}/>
+          {
+            Object.keys(resultData).length !== 0 && 
+            (<button className={css.nextBtn} onClick={handleClick} name="next" >Ок, дальше</button>)
+          }
           <div className={css.greyBG}></div>
         </div>
       }
 
-      {isModalOpen && <QuestionModal onClose={handleCloseModal}/>}
+      {isModalOpen && <QuestionModal onClose={handleModalWindow}/>}
     </>
   );
 };
 
 QuestionPage.propTypes = {
-  languageId: PropTypes.string
-
+  languageId: PropTypes.string,
+  userId: PropTypes.string, 
+  fetchStartingQuestion: PropTypes.func,
+  fetchNextQuestionAndGiveAnswer: PropTypes.func,
+  fetchNextQuestionAndSkipAnswer: PropTypes.func
 }
 
-QuestionPage.defaultProps = {
-  languageId: "5d246ffc75a8c204991c26e1"
-}
+const mapStateToProps = state => ({
+  userId: testSelectors.getUserId(state),
+});
 
-export default QuestionPage;
+const mapDispatchToProps = {
+  fetchStartingQuestion: testOperations.fetchStartingQuestion,
+  fetchNextQuestionAndGiveAnswer: testOperations.fetchNextQuestionAndGiveAnswer,
+  fetchNextQuestionAndSkipAnswer: testOperations.fetchNextQuestionAndSkipAnswer,
+  fetchCancelTest: testOperations.fetchCancelTest
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(QuestionPage);

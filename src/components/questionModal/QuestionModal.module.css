@@ -1,5 +1,5 @@
 .backdrop {
-    background-color: #1a1a1b7d;
+    background-color: #1a1a1bc9;
     position: fixed;
     top: 0;
     left: 0;
@@ -46,11 +46,14 @@
 
 .exitBtn {
     margin-right: 10px;
-    background-color: red;
+    background-color: #ffffff00;
+    border: 1px solid #8b92ab;
+    color: #8b92ab;
 }
 
 .continueBtn {
-    background-color: blue;
+    background-color: #fc842c;
+    box-shadow: 0px 6px 10px 0px #fc842c54;
 }
 
 @media screen and (min-width: 768px) {
@@ -81,12 +84,18 @@
     .continueBtn {
         width: 136px;
         height: 32px;
+        box-shadow: none;
     }
 
     .exitBtn:hover,
-    .exitBtn:focus,
+    .exitBtn:focus {
+        transform: scale(1.1);
+        box-shadow: 0px 6px 10px 0px #8b92ab;
+    }
+
     .continueBtn:hover, 
     .continueBtn:focus {
         transform: scale(1.1);
+        box-shadow: 0px 6px 10px 0px #fc842c54;
     }
 }

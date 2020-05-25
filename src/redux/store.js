@@ -1,12 +1,25 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import testReducer from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import testReducer from "./test/testReducers";
+import homeReducer from "./home/reducers";
 
-// const rootReducer = combineReducers({
-//     testReducer
-// });
+const testPersistConfig = {
+  key: "test",
+  storage,
+  blacklist: ["_persist"]
+};
+
+const rootReducer = combineReducers({
+  // write your reducers here
+  test: persistReducer(testPersistConfig, testReducer),
+  home: homeReducer
+});
 
 const middlewares = [thunk];
 const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
-export const store = createStore(testReducer, enhancer);
+export const store = createStore(rootReducer, enhancer);
+
+export const persistor = persistStore(store);

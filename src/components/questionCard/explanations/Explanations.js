@@ -1,12 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Explanations = ({ text }) => {
+const Explanations = ({ dataText }) => {
+
   return (
     <>
       <h4>Пояснения:</h4>
-      <p>{text}</p>
+      <p>{ dataText }</p>
     </>
   );
+};
+
+Explanations.propTypes = {
+  dataText: PropTypes.string,
 };
 
 export default Explanations;

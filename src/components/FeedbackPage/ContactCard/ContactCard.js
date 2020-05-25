@@ -18,7 +18,7 @@ const ContactCard = () => {
               <b> email: </b>
               <span>{email}</span>
             </p>
-            <a className='cards-user__linkedin' href={linkedin} target='_blank'>
+            <a className='cards-user__linkedin' href={linkedin} target='_blank' rel="noopener noreferrer">
               My LinkedIn
             </a>
           </div>

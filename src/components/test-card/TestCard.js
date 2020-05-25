@@ -7,10 +7,10 @@ const TestCard = (props) => {
   console.log(props);
   return (
     <ul className={styles.headerList}>
-      {props.state !== undefined &&
-        props.state.testsList !== undefined &&
-        props.state.testsList.data !== undefined &&
-        props.state.testsList.data.languages.map((el) => {
+      {props.state.home !== undefined &&
+        props.state.home.testsList !== undefined &&
+        props.state.home.testsList.data !== undefined &&
+        props.state.home.testsList.data.languages.map((el) => {
           return (
             <li className={styles.headerListItem} key={el.languageId}>
               <Link

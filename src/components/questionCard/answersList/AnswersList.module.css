@@ -5,9 +5,9 @@
 
 .questionImgContainer img {
     display: block;
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    margin: 0 auto;
+    margin: 0 auto 22px;
 }
 
 .answersListContainer {
@@ -32,16 +32,16 @@
     margin-bottom: 18px;
 }
 
-.answersListContainer input {
-    margin: 0 14px 0 0;
-}
-
-.answersListContainer p {
+.answersListContainer label {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     color: #2e3038;
     line-height: 1.286;
     margin: 0;
+}
+
+.answersListContainer input {
+    margin: 0 14px 0 0;
 }
 
 .btnContainer {
@@ -86,11 +86,7 @@
     .baseContainer {
         position: relative;
     }
-
-    .questionImgContainer {
-        margin-bottom: 22px;
-    }
-
+    
     .answersListContainer {
         box-shadow: 0px 24px 40px 0px #00000021;
         position: relative;

@@ -1,33 +1,41 @@
-// import React, {useEffect, useRef} from 'react';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
+import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as testOperations from '../../redux/test/testOperations';
 import PropTypes from 'prop-types';
 import css from './QuestionModal.module.css'
 
-const QuestionModal = ({onClose}) => {
-    // const backdropRef = useRef(null);
+const QuestionModal = ({onClose, fetchCancelTest}) => {
+    let backdropRef = useRef(null);
+    let history = useHistory();
 
-    const handleClick = (e) => {
-        // if(e.currentTarget !== backdropRef) return
+    useEffect(() => {
+        const keyDownHendler = (e) => {
+            if (e.code !== 'Escape') return;
+            onClose();
+        }
+
+        window.addEventListener('keydown', keyDownHendler);
+
+        return () => {
+            window.removeEventListener('keydown', keyDownHendler);
+        }
+    }, [onClose]);
+
+    const handleBackdropClick = (e) => {
+        if(e.target !== backdropRef.current) return
+        onClose();
     }
 
-    // const keyDownHendler = (e) => {
-    //     if (e.code !== 'Escape') return;
+    const onSubmit = async () => {
+        await fetchCancelTest();
+        localStorage.setItem('sessionDataTest', JSON.stringify(null));
+        history.push("/");
 
-    //     onClose();
-    // }
-
-    const onSubmit = () => {}
-
-    // useEffect(() => {
-    //     window.addEventListener('keydown', keyDownHendler);
-    //     return () => {
-    //         window.removeEventListener('keydown', keyDownHendler);
-    //     }
-    // }, []);
+    }
 
     return(
-        // <div className="Backdrop" ref={backdropRef} onClick={handleClick}>
-        <div className={css.backdrop} onClick={handleClick}>
+        <div className={css.backdrop} ref={backdropRef} onClick={handleBackdropClick}>
             <div className={css.content}>
                 <p>Вы действительно хотите завершить тест?</p>
                 <div>
@@ -43,4 +51,10 @@ QuestionModal.propTypes = {
     onClose: PropTypes.func
 }
 
-export default QuestionModal;
+// export default QuestionModal;
+  
+  const mapDispatchToProps = {
+    fetchCancelTest: testOperations.fetchCancelTest
+  };
+  
+  export default connect( null, mapDispatchToProps )(QuestionModal);

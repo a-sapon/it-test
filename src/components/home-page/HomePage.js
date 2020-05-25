@@ -5,7 +5,7 @@ import {
   testsLoaded,
   testsRequested,
   testsError,
-} from '../../redux/actionCreators';
+} from '../../redux/home/actionCreators';
 import styles from './HomePage.module.css';
 import quotes from '../../db/quotes.json';
 import TestCard from '../test-card/TestCard';
@@ -14,6 +14,8 @@ import Spinner from '../Spinner/Spinner';
 const HomePage = (props) => {
   const [quote, setQuote] = useState(quotes[0].quote);
   const [author, setAuthor] = useState(quotes[0].author);
+
+  const { testsLoaded, testsRequested, testsError } = props;
 
   const getRandomQuote = () => {
     const randomQuote = Math.floor(Math.random() * quotes.length);
@@ -35,15 +37,14 @@ const HomePage = (props) => {
 
   useEffect(() => {
     async function fetch() {
-      const { testsLoaded, testsRequested, testsError } = props;
       testsRequested();
-      let data = await axios
+      await axios
         .get('https://test.goit.co.ua/api/tests')
         .then((data) => testsLoaded(data))
         .catch((err) => testsError(err));
     }
     fetch();
-  }, []);
+  }, [testsLoaded, testsRequested, testsError]);
 
   return (
     <>
