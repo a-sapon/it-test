@@ -27,13 +27,6 @@ const testReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-
-    // case Types.LOADER_ON:
-    //   return { ...state, isLoading: true };
-
-    // case Types.LOADER_OFF:
-    //   return { ...state, isLoading: false };
-
     default:
       return state;
   }

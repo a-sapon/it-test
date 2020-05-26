@@ -5,7 +5,7 @@ import { store } from './redux/store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import './index.css';
-// import './assets/fonts/fonts.css';
+import './assets/fonts/fonts.css';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,5 +15,5 @@ ReactDOM.render(
       </Router>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
