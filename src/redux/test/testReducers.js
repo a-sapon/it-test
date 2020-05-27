@@ -2,6 +2,7 @@ import Types from './testTypes';
 
 const initialState = {
   userId: null,
+  languageId: null,
   languageTitle: null,
   allQuestionsCount: 0,
   currentQuestion: null,
@@ -21,30 +22,35 @@ const testReducer = (state = initialState, { type, payload }) => {
         userId: payload,
         startTime: new Date()
       };
+    case Types.SAVE_LANGUAGE_ID:
+      return {
+        ...state,
+        languageId: payload
+      };
     case Types.SAVE_LANGUAGE_TITLE:
       return {
         ...state,
-        languageTitle: payload,
+        languageTitle: payload
       };
     case Types.SAVE_ALL_QUESTION_COUNT:
       return {
         ...state,
-        allQuestionsCount: payload,
+        allQuestionsCount: payload
       };
     case Types.SAVE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: payload,
+        currentQuestion: payload
       };
     case Types.SAVE_RESULT_ANSWER:
       return {
         ...state,
-        userRightAnswered: payload ? state.userRightAnswered + 1 : state.userRightAnswered,
+        userRightAnswered: payload ? state.userRightAnswered + 1 : state.userRightAnswered
       };
     case Types.SAVE_FINISH_TIME:
       return {
         ...state,
-        finishTime: payload,
+        finishTime: payload
       };
     case Types.SAVE_FINISH_ANSWERS_AND_QUESTIONS_RESULT:
       return {
@@ -57,6 +63,8 @@ const testReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: payload
       };
+    case Types.RESET_RESULT:
+      return initialState;
     default:
       return state;
   }

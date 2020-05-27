@@ -4,7 +4,7 @@ import styles from '../home-page/HomePage.module.css';
 import { Link } from 'react-router-dom';
 
 const TestCard = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <ul className={styles.headerList}>
       {props.state.home !== undefined &&

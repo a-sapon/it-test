@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import testPagestyle from "./testPage.module.css";
 
 const testPage = (props) => {
-  console.log(props.location.state.item);
+  // console.log(props.location.state.item);
   const { item } = props.location.state;
   const dataGet = (d) => {
     let array = d.toString().split("-");

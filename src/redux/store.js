@@ -5,6 +5,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import testReducer from "./test/testReducers";
 import homeReducer from "./home/reducers";
+import loaderReducer from "./loader/loaderReducers";
 
 const testPersistConfig = {
   key: "test",
@@ -15,7 +16,8 @@ const testPersistConfig = {
 const rootReducer = combineReducers({
   // write your reducers here
   test: persistReducer(testPersistConfig, testReducer),
-  home: homeReducer
+  home: homeReducer,
+  isLoading: loaderReducer
 });
 
 const middlewares = [thunk];

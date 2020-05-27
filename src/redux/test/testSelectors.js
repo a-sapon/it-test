@@ -1,3 +1,5 @@
+export const getLanguageId = state => state.test.languageId;
+
 export const getUserId = state => state.test.userId;
 
 export const getAllQuestionsWithAnswers = state => state.test.questions;

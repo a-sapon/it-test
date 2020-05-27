@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { startLoading, finishLoading } from '../loader/loaderActions'
 import {
   saveUserId,
+  saveLanguageId,
   saveLanguageTitle,
   saveAllQuestionsCount,
   saveCurrentQuestion,
   saveAnswerResult,
   saveFinishResult,
   saveFinishTime,
+  resetAllResults,
   fetchResultError
 } from './testActions';
 
@@ -15,6 +18,9 @@ axios.defaults.baseURL = 'https://test.goit.co.ua/api';
 
 
 export const fetchStartingQuestion = (languageId) => dispatch => {
+  dispatch(startLoading());
+  dispatch(resetAllResults());
+  dispatch(saveLanguageId(languageId));
 
   const serverData = axios
     .get(`/tests/${languageId}`)
@@ -26,6 +32,7 @@ export const fetchStartingQuestion = (languageId) => dispatch => {
       dispatch(saveLanguageTitle(data.languageTitle));
       dispatch(saveAllQuestionsCount(data.allQuestionsCount));
       dispatch(saveCurrentQuestion({...data.question}));
+      dispatch(finishLoading());
 
       return data;
 
@@ -37,6 +44,8 @@ export const fetchStartingQuestion = (languageId) => dispatch => {
 
 
 export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
+  dispatch(startLoading());
+  
   const { userAnswerNumber, questionNumber, questionId } = params
 
   const serverData = axios
@@ -71,7 +80,10 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
             ...data.result, 
             explanation: data.result.questionExplanation
           }
-        }).result.questionExplanation;
+        }
+      ).result.questionExplanation;
+
+      dispatch(finishLoading());
 
       return data;
     })
@@ -82,7 +94,9 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
 
 
 export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
-  const { userAnswerNumber = 0, questionNumber, questionId } = params;
+  dispatch(startLoading());
+
+  const { userAnswerNumber = -1, questionNumber, questionId } = params;
 
   const serverData = axios
     .post(`/answer/skip/${userId}`, 
@@ -97,12 +111,14 @@ export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
 
       const { data } = response;
 
-      dispatch(saveFinishResult({ userAnswer: 0 }));
+      dispatch(saveFinishResult({ userAnswer: -1 }));
       dispatch(saveCurrentQuestion(data.nextQuestion));
       
       data.finalResult && dispatch(saveFinishTime());
 
       delete Object.assign(data, {question: data.nextQuestion }).nextQuestion;
+
+      dispatch(finishLoading());
 
       return data;
     })
@@ -113,17 +129,14 @@ export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
 
 
 export const fetchCancelTest = (userId) => dispatch => {
+  dispatch(saveCurrentQuestion(null));
+  dispatch(saveFinishTime());
+  dispatch(saveFinishResult({ userAnswer: -1 }));
 
   const serverData = axios
-    .post(`/tests/cancel/${userId}`)
-    .then(response => {
-
+  .post(`/tests/cancel/${userId}`)
+  .then(response => {
       const { data } = response;
-
-      dispatch(saveFinishResult({ userAnswer: 0 }));
-      dispatch(saveCurrentQuestion(null));
-
-      data.finalResult && dispatch(saveFinishTime());
 
       return data;
     })
