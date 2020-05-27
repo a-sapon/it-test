@@ -1,4 +1,4 @@
-// WRITE YOUR SERVER REQUESTS HERE
+// SERVER REQUESTS
 import axios from 'axios';
 
 export const services = {

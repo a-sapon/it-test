@@ -19,11 +19,3 @@ export const testsError = (error) => {
     payload: error,
   };
 };
-
-// export const loaderOn = () => {
-//   return { type: Types.LOADER_ON };
-// };
-
-// export const loaderOff = () => {
-//   return { type: Types.LOADER_OFF };
-// };
