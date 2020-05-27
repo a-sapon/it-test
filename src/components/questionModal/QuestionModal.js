@@ -28,10 +28,9 @@ const QuestionModal = ({onClose, fetchCancelTest}) => {
     }
 
     const onSubmit = async () => {
-        await fetchCancelTest();
         localStorage.setItem('sessionDataTest', JSON.stringify(null));
-        history.push("/");
-
+        history.push("/result");
+        await fetchCancelTest();
     }
 
     return(

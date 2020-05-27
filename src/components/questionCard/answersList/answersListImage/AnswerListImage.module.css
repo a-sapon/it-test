@@ -1,0 +1,11 @@
+.questionImgContainer {
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.questionImgContainer img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 22px;
+}

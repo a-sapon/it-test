@@ -1,18 +1,26 @@
 import axios from 'axios';
+import { startLoading, finishLoading } from '../loader/loaderActions'
 import {
   saveUserId,
+  saveLanguageId,
   saveLanguageTitle,
   saveAllQuestionsCount,
   saveCurrentQuestion,
   saveAnswerResult,
   saveFinishResult,
   saveFinishTime,
-  fetchResultError,
+  resetAllResults,
+  fetchResultError
 } from './testActions';
 
 axios.defaults.baseURL = 'https://test.goit.co.ua/api';
 
-export const fetchStartingQuestion = (languageId) => (dispatch) => {
+
+export const fetchStartingQuestion = (languageId) => dispatch => {
+  dispatch(startLoading());
+  dispatch(resetAllResults());
+  dispatch(saveLanguageId(languageId));
+
   const serverData = axios
     .get(`/tests/${languageId}`)
     .then((response) => {
@@ -21,7 +29,8 @@ export const fetchStartingQuestion = (languageId) => (dispatch) => {
       dispatch(saveUserId(data.userId));
       dispatch(saveLanguageTitle(data.languageTitle));
       dispatch(saveAllQuestionsCount(data.allQuestionsCount));
-      dispatch(saveCurrentQuestion({ ...data.question }));
+      dispatch(saveCurrentQuestion({...data.question}));
+      dispatch(finishLoading());
 
       return data;
     })
@@ -30,10 +39,10 @@ export const fetchStartingQuestion = (languageId) => (dispatch) => {
   return serverData;
 };
 
-export const fetchNextQuestionAndGiveAnswer = (userId, params) => (
-  dispatch
-) => {
-  const { userAnswerNumber, questionNumber, questionId } = params;
+export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
+  dispatch(startLoading());
+  
+  const { userAnswerNumber, questionNumber, questionId } = params
 
   const serverData = axios
     .post(
@@ -68,13 +77,17 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => (
 
       data.finalResult && dispatch(saveFinishTime());
 
-      delete Object.assign(data, { question: data.nextQuestion }).nextQuestion;
-      delete Object.assign(data, {
-        result: {
-          ...data.result,
-          explanation: data.result.questionExplanation,
-        },
-      }).result.questionExplanation;
+      delete Object.assign(data, {question: data.nextQuestion}).nextQuestion;
+      delete Object.assign(data, 
+        {result: 
+          {
+            ...data.result, 
+            explanation: data.result.questionExplanation
+          }
+        }
+      ).result.questionExplanation;
+
+      dispatch(finishLoading());
 
       return data;
     })
@@ -83,10 +96,10 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => (
   return serverData;
 };
 
-export const fetchNextQuestionAndSkipAnswer = (userId, params) => (
-  dispatch
-) => {
-  const { userAnswerNumber = 0, questionNumber, questionId } = params;
+export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
+  dispatch(startLoading());
+
+  const { userAnswerNumber = -1, questionNumber, questionId } = params;
 
   const serverData = axios
     .post(
@@ -102,34 +115,36 @@ export const fetchNextQuestionAndSkipAnswer = (userId, params) => (
     .then((response) => {
       const { data } = response;
 
-      dispatch(saveFinishResult({ userAnswer: 0 }));
+      dispatch(saveFinishResult({ userAnswer: -1 }));
       dispatch(saveCurrentQuestion(data.nextQuestion));
 
       data.finalResult && dispatch(saveFinishTime());
 
       delete Object.assign(data, { question: data.nextQuestion }).nextQuestion;
 
+      dispatch(finishLoading());
+
       return data;
     })
     .catch((err) => dispatch(fetchResultError(err)));
 
   return serverData;
-};
+}
 
-export const fetchCancelTest = (userId) => (dispatch) => {
+
+export const fetchCancelTest = (userId) => dispatch => {
+  dispatch(saveCurrentQuestion(null));
+  dispatch(saveFinishTime());
+  dispatch(saveFinishResult({ userAnswer: -1 }));
+
   const serverData = axios
-    .post(`/tests/cancel/${userId}`)
-    .then((response) => {
+  .post(`/tests/cancel/${userId}`)
+  .then(response => {
       const { data } = response;
 
-      dispatch(saveFinishResult({ userAnswer: 0 }));
-      dispatch(saveCurrentQuestion(null));
-
-      data.finalResult && dispatch(saveFinishTime());
-
       return data;
     })
-    .catch((err) => dispatch(fetchResultError(err)));
+    .catch(err => dispatch(fetchResultError(err)));
 
   return serverData;
-};
+}
