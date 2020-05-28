@@ -12,9 +12,6 @@ const TestDuration = ({ start, finish }) => {
 };
 
 const AllResults = (props) => {
-  
-  console.log(props);
-  //const { item } = props.location.state;
   const {
     languageTitle,
     rightAnsweredInPercentage,
@@ -61,14 +58,7 @@ const AllResults = (props) => {
             </span>
           </li>
         </ul>
-        <Link
-          to={{
-            pathname: 'test',
-            // state: {
-            //   id: item.languageId,
-            // }
-          }}
-        >
+        <Link to="/">
           <button className={styles.grade__button}>
             <span>Пройти еще раз</span>
           </button>
@@ -89,6 +79,7 @@ const AllResults = (props) => {
             answerCorrectly: el.userAnswerCorrectly,
             userAnswer: el.userAnswer,
             rightAnswer: el.rightAnswer,
+            explanation: el.explanation,
           };
 
           return (
