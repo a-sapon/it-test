@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
@@ -10,8 +11,10 @@ const TestDuration = ({ start, finish }) => {
   return duration;
 };
 
-const AllResults = ({ test }) => {
-  console.log(test);
+const AllResults = (props) => {
+  
+  console.log(props);
+  //const { item } = props.location.state;
   const {
     languageTitle,
     rightAnsweredInPercentage,
@@ -19,8 +22,8 @@ const AllResults = ({ test }) => {
     allQuestionsCount,
     startTime,
     finishTime,
-    questions
-  } = test;
+    questions,
+  } = props.test;
 
   return (
     <section id="results">
@@ -58,32 +61,44 @@ const AllResults = ({ test }) => {
             </span>
           </li>
         </ul>
-        <button className={styles.grade__button}>
-          <span>Пройти еще раз</span>
-        </button>
+        <Link
+          to={{
+            pathname: 'test',
+            // state: {
+            //   id: item.languageId,
+            // }
+          }}
+        >
+          <button className={styles.grade__button}>
+            <span>Пройти еще раз</span>
+          </button>
+        </Link>
       </div>
-      
-      {questions.map((el) => {
-        const dataParams = {
-          questionText: el.questionText,
-          isResultVisible: true,
-          answers: el.answers,
-          image: el.image,
-          imageMobile: el.imageMobile,
-        }
+
+      {questions
+        .filter((el) => !el.userAnswerCorrectly)
+        .map((el) => {
+          const dataParams = {
+            questionText: el.questionText,
+            isResultVisible: true,
+            answers: el.answers,
+            image: el.image,
+            imageMobile: el.imageMobile,
+          };
           const resultParams = {
-            AnswerCorrectly: el.userAnswerCorrectly,
+            answerCorrectly: el.userAnswerCorrectly,
             userAnswer: el.userAnswer,
             rightAnswer: el.rightAnswer,
           };
-        return (
-          <QuestionCard
-            key={el.questionId}
-            data={dataParams}
-            result={resultParams}
-          />
-        );
-      })}
+
+          return (
+            <QuestionCard
+              key={el.questionId}
+              data={dataParams}
+              result={resultParams}
+            />
+          );
+        })}
     </section>
   );
 };
