@@ -17,34 +17,9 @@
     margin: 0 auto;
 }
 
-.formContainer ul {
+.answersList {
     list-style: none;
     margin: 0;
-    padding: 0 24px 0 44px;
-}
-
-.formContainer li {
-    display: flex;
-    align-items: center;
-}
-
-.formContainer li:not(:last-child) {
-    margin-bottom: 18px;
-}
-
-.formContainer label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-    color: #2e3038;
-    line-height: 1.286;
-    margin: 0;
-}
-
-.formContainer input {
-    margin: 0 14px 0 0;
 }
 
 .catImgInsertion {
@@ -112,19 +87,14 @@
         z-index: 30;
     }
     
-    .formContainer ul {
-        width: 58%;
-    }
-
-    .formContainer li {
-        width: 100%;
-        padding-left: 62px;
+    .answersList {
+        width: 56%;
     }
 
     .catImgInsertion {
-        width: 42%;
+        width: 44%;
         height: 100%;
-        padding: 0 74px 0 20px;
+        padding: 0 70px 0 24px;
         margin: 0;
     }
 

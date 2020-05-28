@@ -60,6 +60,9 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
     .then(response => {
 
       const { data } = response;
+
+      Object.assign(data, {result: {...data.result, userAnswer:  Number(data.result.userAnswer)}});
+
       const { questionExplanation, answerCorrectly, userAnswer, rightAnswer } = data.result;
 
       dispatch(saveAnswerResult(answerCorrectly));
@@ -77,7 +80,7 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
       delete Object.assign(data, 
         {result: 
           {
-            ...data.result, 
+            ...data.result,
             explanation: data.result.questionExplanation
           }
         }

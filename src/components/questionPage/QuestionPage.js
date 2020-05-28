@@ -22,7 +22,6 @@ const QuestionPage = (props) => {
       fetchStartingQuestion,
       fetchNextQuestionAndGiveAnswer
     } = props;
-    console.log('isLoading', isLoading)
 
   let history = useHistory();
     
@@ -71,7 +70,6 @@ const QuestionPage = (props) => {
     }
     
     const data = JSON.parse(localStorage.getItem('sessionDataTest'));
-    console.log('data', data)
     
     if(data) {
       if(getStateIdValidation(state)) languageId !== state.id && fetchData(state.id);
@@ -109,7 +107,7 @@ const QuestionPage = (props) => {
    * Scroll function
    */
   const scrollTop = function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 46, behavior: 'smooth' });
   } 
 
   const scrollDown = function() {

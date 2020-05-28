@@ -33,6 +33,10 @@ button {
         min-height: 84vh;
     }
 
+    .nextBtn {
+        margin-left: 72px;
+    }
+
     .greyBG {
         display: block;
         background-color: #f2f2f2;
@@ -55,6 +59,7 @@ button {
         width: 136px;
         height: 32px;
         box-shadow: none;
+        margin-left: 0;
     }
 
     .nextBtn:hover, 

@@ -40,7 +40,7 @@ QuestionCard.propTypes = {
     answerCorrectly: PropTypes.bool,
     explanation: PropTypes.string,
     rightAnswer: PropTypes.number,
-    userAnswer: PropTypes.string
+    userAnswer: PropTypes.number
   })
 
 }
