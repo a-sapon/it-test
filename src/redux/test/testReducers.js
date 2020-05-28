@@ -45,9 +45,7 @@ const testReducer = (state = initialState, { type, payload }) => {
     case Types.SAVE_RESULT_ANSWER:
       return {
         ...state,
-        userRightAnswered: payload
-          ? state.userRightAnswered + 1
-          : state.userRightAnswered,
+        userRightAnswered: payload ? state.userRightAnswered + 1 : state.userRightAnswered
       };
     case Types.SAVE_FINISH_TIME:
       return {

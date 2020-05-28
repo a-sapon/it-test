@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Circle from 'react-circle';
-//import WrongAnswers from './WrongAnswers/WrongAnswers'
 import styles from './AllResults.module.css';
-
+import QuestionCard from '../questionCard/QuestionCard';
 
 const TestDuration = ({ start, finish }) => {
   const diff = new Date(finish).getTime() - new Date(start).getTime();
@@ -20,12 +19,15 @@ const AllResults = ({ test }) => {
     allQuestionsCount,
     startTime,
     finishTime,
+    questions
   } = test;
 
   return (
     <section id="results">
       <div className={styles.grade}>
-        <h1 className={styles.grade__title}>Результаты теста “{languageTitle}”</h1>
+        <h1 className={styles.grade__title}>
+          Результаты теста “{languageTitle}”
+        </h1>
         <Circle
           progress={rightAnsweredInPercentage}
           animate={true}
@@ -60,11 +62,28 @@ const AllResults = ({ test }) => {
           <span>Пройти еще раз</span>
         </button>
       </div>
-      {/* <WrongAnswers/> */}
       
-
-
-  
+      {questions.map((el) => {
+        const dataParams = {
+          questionText: el.questionText,
+          isResultVisible: true,
+          answers: el.answers,
+          image: el.image,
+          imageMobile: el.imageMobile,
+        }
+          const resultParams = {
+            AnswerCorrectly: el.userAnswerCorrectly,
+            userAnswer: el.userAnswer,
+            rightAnswer: el.rightAnswer,
+          };
+        return (
+          <QuestionCard
+            key={el.questionId}
+            data={dataParams}
+            result={resultParams}
+          />
+        );
+      })}
     </section>
   );
 };
