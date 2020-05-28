@@ -2,6 +2,7 @@ import Types from './testTypes';
 
 const initialState = {
   userId: null,
+  languageId: null,
   languageTitle: null,
   allQuestionsCount: 0,
   currentQuestion: null,
@@ -20,6 +21,11 @@ const testReducer = (state = initialState, { type, payload }) => {
         ...state,
         userId: payload,
         startTime: new Date(),
+      };
+    case Types.SAVE_LANGUAGE_ID:
+      return {
+        ...state,
+        languageId: payload,
       };
     case Types.SAVE_LANGUAGE_TITLE:
       return {
@@ -64,6 +70,8 @@ const testReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: payload,
       };
+    case Types.RESET_RESULT:
+      return initialState;
     default:
       return state;
   }

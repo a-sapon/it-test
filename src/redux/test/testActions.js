@@ -5,6 +5,11 @@ export const saveUserId = (string) => ({
   payload: string,
 });
 
+export const saveLanguageId = (string) => ({
+  type: Types.SAVE_LANGUAGE_ID,
+  payload: string,
+});
+
 export const saveLanguageTitle = (string) => ({
   type: Types.SAVE_LANGUAGE_TITLE,
   payload: string,
@@ -33,6 +38,10 @@ export const saveFinishTime = () => ({
 export const saveFinishResult = (object) => ({
   type: Types.SAVE_FINISH_ANSWERS_AND_QUESTIONS_RESULT,
   payload: object,
+});
+
+export const resetAllResults = () => ({
+  type: Types.RESET_RESULT,
 });
 
 export const fetchResultError = (string) => ({

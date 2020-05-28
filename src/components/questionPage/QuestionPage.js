@@ -1,25 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as loaderSelectors from '../../redux/loader/loaderSelectors';
 import * as testOperations from '../../redux/test/testOperations';
 import * as testSelectors from '../../redux/test/testSelectors';
 import PropTypes from 'prop-types';
 import QuestionHdr from '../questionHdr/QuestionHdr';
 import QuestionCard from '../questionCard/QuestionCard';
-import QuestionModal from '..//questionModal/QuestionModal';
+import QuestionModal from '../questionModal/QuestionModal';
+import Spinner from '../Spinner/Spinner';
 import css from './QuestionPage.module.css';
 
 const QuestionPage = (props) => {
   const {
     location: { state },
+    languageId,
+    isLoading,
     userId,
     fetchStartingQuestion,
     fetchNextQuestionAndGiveAnswer,
-    fetchNextQuestionAndSkipAnswer,
   } = props;
+  console.log('isLoading', isLoading);
 
   let history = useHistory();
 
+  /**
+   *  Base state
+   */
   const [hdrData, setHdrData] = useState(null);
   const [cardData, setCardData] = useState(null);
   const [tmpData, setTmpData] = useState(null);
@@ -41,27 +48,46 @@ const QuestionPage = (props) => {
   );
 
   useEffect(() => {
-    async function fetchData() {
-      if (state === undefined || !('id' in state)) return history.push('/');
-
-      const data = await fetchStartingQuestion(state.id);
+    async function fetchData(id) {
+      const data = await fetchStartingQuestion(id);
       dataRecorder(data);
     }
 
+    function getStateIdValidation(state) {
+      if (state === undefined) return false;
+      if (Object.getPrototypeOf(state) !== Object.prototype) return false;
+      if (!('id' in state)) return false;
+      return true;
+    }
+
     const data = JSON.parse(localStorage.getItem('sessionDataTest'));
-    if (data && data.result) delete data.result;
+    console.log('data', data);
 
-    if (!data) fetchData();
+    if (data) {
+      if (getStateIdValidation(state))
+        languageId !== state.id && fetchData(state.id);
 
-    data && dataRecorder(data);
+      data.result && delete data.result;
+      dataRecorder(data);
+      getFinalResultCallback(data);
+    }
 
-    data && getFinalResultCallback(data);
-  }, [state, history, fetchStartingQuestion, getFinalResultCallback]);
+    if (!data) {
+      if (!getStateIdValidation(state)) return history.push('/');
+      fetchData(state.id);
+    }
+  }, [
+    state,
+    history,
+    languageId,
+    fetchStartingQuestion,
+    getFinalResultCallback,
+  ]);
 
   /**
    * Data State Recording Assistant
    */
-  const dataRecorder = function (data) {
+  function dataRecorder(data) {
     const { allQuestionsCount, languageTitle, questionNumber, result } = data;
 
     result && setResultData(result);
@@ -69,9 +95,8 @@ const QuestionPage = (props) => {
     setHdrData({ allQuestionsCount, languageTitle, questionNumber });
     setCardData({ ...data.question });
     setAnswerNumber(0);
-
     localStorage.setItem('sessionDataTest', JSON.stringify(data));
-  };
+  }
 
   /**
    * Scroll function
@@ -95,18 +120,17 @@ const QuestionPage = (props) => {
     if (e.target.name !== 'next' && !tmpData)
       return setClickValue(e.target.name);
 
+    if (tmpData.finalResult) return getFinalResultCallback(tmpData);
+
     dataRecorder(tmpData);
     setResultData({});
     setTmpData(null);
-
-    getFinalResultCallback(tmpData);
     handleVisibleResult();
     scrollTop();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const params = {
       userAnswerNumber: answerNumber,
       questionNumber: hdrData.questionNumber,
@@ -114,15 +138,22 @@ const QuestionPage = (props) => {
     };
 
     if (clickValue === 'skip') {
-      const data = await fetchNextQuestionAndSkipAnswer(userId, params);
+      const data = await fetchNextQuestionAndGiveAnswer(userId, {
+        ...params,
+        questionNumber: -1,
+      });
 
+      if (data.finalResult) return getFinalResultCallback(data);
+
+      delete data.result;
       dataRecorder(data);
-      getFinalResultCallback(data);
       scrollTop();
     }
 
     if (answerNumber && !tmpData && clickValue === 'answer') {
       const newTmpData = await fetchNextQuestionAndGiveAnswer(userId, params);
+
+      localStorage.setItem('sessionDataTest', JSON.stringify(newTmpData));
 
       setTmpData(newTmpData);
       setResultData(newTmpData.result);
@@ -163,6 +194,7 @@ const QuestionPage = (props) => {
             }}
             result={resultData}
           />
+
           {Object.keys(resultData).length !== 0 && (
             <button className={css.nextBtn} onClick={handleClick} name='next'>
               Ок, дальше
@@ -172,6 +204,7 @@ const QuestionPage = (props) => {
         </div>
       )}
 
+      {isLoading && <Spinner />}
       {isModalOpen && <QuestionModal onClose={handleModalWindow} />}
     </>
   );
@@ -182,11 +215,12 @@ QuestionPage.propTypes = {
   userId: PropTypes.string,
   fetchStartingQuestion: PropTypes.func,
   fetchNextQuestionAndGiveAnswer: PropTypes.func,
-  fetchNextQuestionAndSkipAnswer: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   userId: testSelectors.getUserId(state),
+  languageId: testSelectors.getLanguageId(state),
+  isLoading: loaderSelectors.getLoadingState(state),
 });
 
 const mapDispatchToProps = {
