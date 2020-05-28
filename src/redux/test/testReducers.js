@@ -25,22 +25,22 @@ const testReducer = (state = initialState, { type, payload }) => {
     case Types.SAVE_LANGUAGE_ID:
       return {
         ...state,
-        languageId: payload
+        languageId: payload,
       };
     case Types.SAVE_LANGUAGE_TITLE:
       return {
         ...state,
-        languageTitle: payload
+        languageTitle: payload,
       };
     case Types.SAVE_ALL_QUESTION_COUNT:
       return {
         ...state,
-        allQuestionsCount: payload
+        allQuestionsCount: payload,
       };
     case Types.SAVE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: payload
+        currentQuestion: payload,
       };
     case Types.SAVE_RESULT_ANSWER:
       return {
@@ -50,7 +50,7 @@ const testReducer = (state = initialState, { type, payload }) => {
     case Types.SAVE_FINISH_TIME:
       return {
         ...state,
-        finishTime: payload
+        finishTime: payload,
       };
     case Types.SAVE_FINISH_ANSWERS_AND_QUESTIONS_RESULT:
       return {

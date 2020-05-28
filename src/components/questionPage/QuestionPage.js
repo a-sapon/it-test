@@ -4,31 +4,29 @@ import { connect } from 'react-redux';
 import * as loaderSelectors from '../../redux/loader/loaderSelectors';
 import * as testOperations from '../../redux/test/testOperations';
 import * as testSelectors from '../../redux/test/testSelectors';
-import PropTypes from "prop-types";
-import QuestionHdr from "../questionHdr/QuestionHdr";
-import QuestionCard from "../questionCard/QuestionCard";
-import QuestionModal from "../questionModal/QuestionModal";
+import PropTypes from 'prop-types';
+import QuestionHdr from '../questionHdr/QuestionHdr';
+import QuestionCard from '../questionCard/QuestionCard';
+import QuestionModal from '../questionModal/QuestionModal';
 import Spinner from '../Spinner/Spinner';
 import css from './QuestionPage.module.css';
 
-
-const QuestionPage = (props) => { 
-  
-  const { 
-      location: { state },
-      languageId,
-      isLoading,
-      userId,
-      fetchStartingQuestion,
-      fetchNextQuestionAndGiveAnswer
-    } = props;
-    console.log('isLoading', isLoading)
+const QuestionPage = (props) => {
+  const {
+    location: { state },
+    languageId,
+    isLoading,
+    userId,
+    fetchStartingQuestion,
+    fetchNextQuestionAndGiveAnswer,
+  } = props;
+  console.log('isLoading', isLoading);
 
   let history = useHistory();
-    
+
   /**
-  *  Base state
-  */
+   *  Base state
+   */
   const [hdrData, setHdrData] = useState(null);
   const [cardData, setCardData] = useState(null);
   const [tmpData, setTmpData] = useState(null);
@@ -50,37 +48,41 @@ const QuestionPage = (props) => {
   );
 
   useEffect(() => {
-
     async function fetchData(id) {
       const data = await fetchStartingQuestion(id);
       dataRecorder(data);
     }
 
     function getStateIdValidation(state) {
-      if(state === undefined) return false;
-      if(Object.getPrototypeOf(state) !== Object.prototype) return false;
-      if(!("id" in state)) return false;
+      if (state === undefined) return false;
+      if (Object.getPrototypeOf(state) !== Object.prototype) return false;
+      if (!('id' in state)) return false;
       return true;
     }
 
     const data = JSON.parse(localStorage.getItem('sessionDataTest'));
-    console.log('data', data)
-    
-    if(data) {
-      if(getStateIdValidation(state)) languageId !== state.id && fetchData(state.id);
-      
+    console.log('data', data);
+
+    if (data) {
+      if (getStateIdValidation(state))
+        languageId !== state.id && fetchData(state.id);
+
       data.result && delete data.result;
-      dataRecorder(data); 
+      dataRecorder(data);
       getFinalResultCallback(data);
     }
 
-    if(!data) {
-      if(!getStateIdValidation(state)) return history.push('/');
+    if (!data) {
+      if (!getStateIdValidation(state)) return history.push('/');
       fetchData(state.id);
     }
-
-  }, [ state, history, languageId, fetchStartingQuestion, getFinalResultCallback ]);
-
+  }, [
+    state,
+    history,
+    languageId,
+    fetchStartingQuestion,
+    getFinalResultCallback,
+  ]);
 
   /**
    * Data State Recording Assistant
@@ -93,9 +95,8 @@ const QuestionPage = (props) => {
     setHdrData({ allQuestionsCount, languageTitle, questionNumber });
     setCardData({ ...data.question });
     setAnswerNumber(0);
-
     localStorage.setItem('sessionDataTest', JSON.stringify(data));
-  };
+  }
 
   /**
    * Scroll function
@@ -116,35 +117,36 @@ const QuestionPage = (props) => {
   };
 
   const handleClick = (e) => {
-    if(e.target.name !== "next" && !tmpData) return setClickValue(e.target.name);
-    
-    if(tmpData.finalResult) return getFinalResultCallback(tmpData);
+    if (e.target.name !== 'next' && !tmpData)
+      return setClickValue(e.target.name);
+
+    if (tmpData.finalResult) return getFinalResultCallback(tmpData);
 
     dataRecorder(tmpData);
     setResultData({});
     setTmpData(null);
-
     handleVisibleResult();
     scrollTop();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const params = {
       userAnswerNumber: answerNumber,
       questionNumber: hdrData.questionNumber,
       questionId: cardData.questionId,
     };
 
-    if(clickValue === "skip") {
-      const data = await fetchNextQuestionAndGiveAnswer(userId, { ...params, questionNumber: -1 });
+    if (clickValue === 'skip') {
+      const data = await fetchNextQuestionAndGiveAnswer(userId, {
+        ...params,
+        questionNumber: -1,
+      });
 
-      if(data.finalResult) return getFinalResultCallback(data);
+      if (data.finalResult) return getFinalResultCallback(data);
 
       delete data.result;
       dataRecorder(data);
-      
       scrollTop();
     }
 
@@ -175,36 +177,35 @@ const QuestionPage = (props) => {
 
   const handleModalWindow = () => {
     setIsModalOpen(!isModalOpen);
-  }
-  
+  };
+
   return (
     <>
       {cardData !== null && (
         <div className={css.questionPageContainer}>
-          <QuestionHdr data={hdrData} handleClick={handleModalWindow}/>
-          <QuestionCard 
-            data={
-              {
-                ...cardData, 
-                isResultVisible, 
-                handleChange, 
-                handleSubmit, 
-                handleClick
-              }
-            } 
-            
-            result={resultData}/>
+          <QuestionHdr data={hdrData} handleClick={handleModalWindow} />
+          <QuestionCard
+            data={{
+              ...cardData,
+              isResultVisible,
+              handleChange,
+              handleSubmit,
+              handleClick,
+            }}
+            result={resultData}
+          />
 
-          {
-            Object.keys(resultData).length !== 0 && 
-            (<button className={css.nextBtn} onClick={handleClick} name="next" >Ок, дальше</button>)
-          }
+          {Object.keys(resultData).length !== 0 && (
+            <button className={css.nextBtn} onClick={handleClick} name='next'>
+              Ок, дальше
+            </button>
+          )}
           <div className={css.greyBG}></div>
         </div>
       )}
 
-      {isLoading && <Spinner/>}
-      {isModalOpen && <QuestionModal onClose={handleModalWindow}/>}
+      {isLoading && <Spinner />}
+      {isModalOpen && <QuestionModal onClose={handleModalWindow} />}
     </>
   );
 };
@@ -214,7 +215,7 @@ QuestionPage.propTypes = {
   userId: PropTypes.string,
   fetchStartingQuestion: PropTypes.func,
   fetchNextQuestionAndGiveAnswer: PropTypes.func,
-}
+};
 
 const mapStateToProps = (state) => ({
   userId: testSelectors.getUserId(state),
