@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Navbar } from './Navbar/Navbar';
+import { Nav } from './Navbar/Nav';
 import styles from './App.module.css';
 import Spinner from './Spinner/Spinner';
 
@@ -29,7 +29,7 @@ const FeedbackPage = lazy(() =>
 function App() {
   return (
     <div className={styles.container}>
-      <Navbar />
+      <Nav />
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path='/' component={HomePage} />
