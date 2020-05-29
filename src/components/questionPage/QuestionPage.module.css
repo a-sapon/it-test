@@ -56,16 +56,17 @@ button {
     }
 
     .nextBtn {
+        box-shadow: none;
+        transition: transform 350ms ease-in-out;
         width: 136px;
         height: 32px;
-        box-shadow: none;
         margin-left: 0;
     }
 
     .nextBtn:hover, 
     .nextBtn:focus {
-        transform: scale(1.1);
         box-shadow: 0px 6px 10px 0px #fc842c54;
+        transform: scale(1.1);
     }
 
     .greyBG {

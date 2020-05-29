@@ -82,15 +82,18 @@
     
     .exitBtn,
     .continueBtn {
+        transition: transform 250ms ease-in-out;
+        box-shadow: none;
         width: 136px;
         height: 32px;
-        box-shadow: none;
     }
 
     .exitBtn:hover,
     .exitBtn:focus {
-        transform: scale(1.1);
         box-shadow: 0px 6px 10px 0px #8b92ab;
+        transform: scale(1.1);
+        background-color: #8b92ab;
+        color: #fff;
     }
 
     .continueBtn:hover, 

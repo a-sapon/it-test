@@ -134,19 +134,26 @@
         max-width: 690px;
     }
 
+    .giveAnswerBtn,
+    .skipAnswerBtn {
+        transition: transform 250ms ease-in-out;
+    }
+
     .giveAnswerBtn {
         box-shadow: none;
     }
     
     .giveAnswerBtn:hover,
     .giveAnswerBtn:focus {
-        transform: scale(1.1);
         box-shadow: 0px 6px 10px 0px #fc842c54;
+        transform: scale(1.1);
     }
 
     .skipAnswerBtn:hover,
     .skipAnswerBtn:focus {
-        transform: scale(1.1);
         box-shadow: 0px 6px 10px 0px #8b92ab;
+        transform: scale(1.1);
+        background-color: #8b92ab;
+        color: #fff;
     }
 }

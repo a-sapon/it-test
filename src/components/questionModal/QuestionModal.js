@@ -1,9 +1,9 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import css from './QuestionModal.module.css'
 
-const QuestionModal = ({onClose, fetchCancelTest}) => {
+const QuestionModal = ({ onClose }) => {
     let backdropRef = useRef(null);
     let history = useHistory();
 
