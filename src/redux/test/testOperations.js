@@ -13,7 +13,6 @@ import {
   fetchResultError
 } from './testActions';
 
-
 axios.defaults.baseURL = 'https://test.goit.co.ua/api';
 
 
@@ -24,8 +23,7 @@ export const fetchStartingQuestion = (languageId) => dispatch => {
 
   const serverData = axios
     .get(`/tests/${languageId}`)
-    .then(response => {
-
+    .then((response) => {
       const { data } = response;
 
       dispatch(saveUserId(data.userId));
@@ -35,13 +33,11 @@ export const fetchStartingQuestion = (languageId) => dispatch => {
       dispatch(finishLoading());
 
       return data;
-
     })
-    .catch(err => dispatch(fetchResultError(err)));
+    .catch((err) => dispatch(fetchResultError(err)));
 
   return serverData;
-}
-
+};
 
 export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
   dispatch(startLoading());
@@ -49,16 +45,17 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
   const { userAnswerNumber, questionNumber, questionId } = params
 
   const serverData = axios
-    .post(`/answer/${userId}`, 
-    
-      { 
-        userAnswerNumber, 
-        questionNumber, 
-        questionId 
-      })
+    .post(
+      `/answer/${userId}`,
 
-    .then(response => {
+      {
+        userAnswerNumber,
+        questionNumber,
+        questionId,
+      }
+    )
 
+    .then((response) => {
       const { data } = response;
 
       Object.assign(data, {result: {...data.result, userAnswer:  Number(data.result.userAnswer)}});
@@ -66,12 +63,14 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
       const { questionExplanation, answerCorrectly, userAnswer, rightAnswer } = data.result;
 
       dispatch(saveAnswerResult(answerCorrectly));
-      dispatch(saveFinishResult({
-        explanation: questionExplanation, 
-        userAnswerCorrectly: answerCorrectly,
-        userAnswer,
-        rightAnswer 
-      }));
+      dispatch(
+        saveFinishResult({
+          explanation: questionExplanation,
+          userAnswerCorrectly: answerCorrectly,
+          userAnswer,
+          rightAnswer,
+        })
+      );
       dispatch(saveCurrentQuestion(data.nextQuestion));
 
       data.finalResult && dispatch(saveFinishTime());
@@ -90,11 +89,10 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
 
       return data;
     })
-    .catch(err => dispatch(fetchResultError(err)));
+    .catch((err) => dispatch(fetchResultError(err)));
 
   return serverData;
-}
-
+};
 
 export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
   dispatch(startLoading());
@@ -102,30 +100,31 @@ export const fetchNextQuestionAndSkipAnswer = (userId, params) => dispatch => {
   const { userAnswerNumber = -1, questionNumber, questionId } = params;
 
   const serverData = axios
-    .post(`/answer/skip/${userId}`, 
+    .post(
+      `/answer/skip/${userId}`,
 
-      { 
-        userAnswerNumber, 
-        questionNumber, 
-        questionId 
-      })
-    
-    .then(response => {
+      {
+        userAnswerNumber,
+        questionNumber,
+        questionId,
+      }
+    )
 
+    .then((response) => {
       const { data } = response;
 
       dispatch(saveFinishResult({ userAnswer: -1 }));
       dispatch(saveCurrentQuestion(data.nextQuestion));
-      
+
       data.finalResult && dispatch(saveFinishTime());
 
-      delete Object.assign(data, {question: data.nextQuestion }).nextQuestion;
+      delete Object.assign(data, { question: data.nextQuestion }).nextQuestion;
 
       dispatch(finishLoading());
 
       return data;
     })
-    .catch(err => dispatch(fetchResultError(err)));
+    .catch((err) => dispatch(fetchResultError(err)));
 
   return serverData;
 }

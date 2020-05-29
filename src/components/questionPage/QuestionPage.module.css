@@ -52,7 +52,7 @@ button {
 @media screen and (min-width: 1280px) {
     .questionPageContainer {
         max-width: 690px;
-        margin: 0 auto 22px;
+        margin: 0 auto;
     }
 
     .nextBtn {

@@ -1,9 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Circle from 'react-circle';
-//import WrongAnswers from './WrongAnswers/WrongAnswers'
 import styles from './AllResults.module.css';
-
+import QuestionCard from '../questionCard/QuestionCard';
 
 const TestDuration = ({ start, finish }) => {
   const diff = new Date(finish).getTime() - new Date(start).getTime();
@@ -11,8 +11,7 @@ const TestDuration = ({ start, finish }) => {
   return duration;
 };
 
-const AllResults = ({ test }) => {
-  console.log(test);
+const AllResults = (props) => {
   const {
     languageTitle,
     rightAnsweredInPercentage,
@@ -20,12 +19,15 @@ const AllResults = ({ test }) => {
     allQuestionsCount,
     startTime,
     finishTime,
-  } = test;
+    questions,
+  } = props.test;
 
   return (
-    <section id="results">
+    <section id="results" className={styles.baseContainer}>
       <div className={styles.grade}>
-        <h1 className={styles.grade__title}>Результаты теста “{languageTitle}”</h1>
+        <h1 className={styles.grade__title}>
+          Результаты теста “{languageTitle}”
+        </h1>
         <Circle
           progress={rightAnsweredInPercentage}
           animate={true}
@@ -56,15 +58,40 @@ const AllResults = ({ test }) => {
             </span>
           </li>
         </ul>
-        <button className={styles.grade__button}>
-          <span>Пройти еще раз</span>
-        </button>
+        <Link to="/">
+          <button className={styles.grade__button}>
+            <span>Пройти еще раз</span>
+          </button>
+        </Link>
       </div>
-      {/* <WrongAnswers/> */}
-      
 
+      {questions
+        .filter((el) => !el.userAnswerCorrectly)
+        .map((el) => {
+          const dataParams = {
+            questionText: el.questionText,
+            isResultVisible: true,
+            answers: el.answers,
+            image: el.image,
+            imageMobile: el.imageMobile,
+          };
+          const resultParams = {
+            answerCorrectly: el.userAnswerCorrectly,
+            userAnswer: el.userAnswer,
+            rightAnswer: el.rightAnswer,
+            explanation: el.explanation,
+          };
 
-  
+          return (
+            <div key={el.questionId} className={styles.questionCardContainer}>
+              <QuestionCard
+                key={el.questionId}
+                data={dataParams}
+                result={resultParams}
+              />
+            </div>
+          );
+        })}
     </section>
   );
 };

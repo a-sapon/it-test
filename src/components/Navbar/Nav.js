@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import styles from './Navbar.module.css';
+import styles from './Nav.module.css';
 
-export const Navbar = () => (
+export const Nav = () => (
   <nav className={styles.navbar}>
     <Link to='/' className={styles.logo}>
       <span>it</span>

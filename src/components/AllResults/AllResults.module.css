@@ -1,22 +1,30 @@
-h1, h2, h3 {
+.baseContainer {
+	padding-bottom: 68px;
+}
+
+h1,
+h2,
+h3 {
 	line-height: 1.4;
 }
+
 .grade {
 	background-color: #284060;
+	box-shadow: 0px 24px 40px 0px rgba(0, 0, 0, 0.13);
 	text-align: center;
 	padding: 45px 0;
 	margin-bottom: 35px;
 }
 
 .grade__title {
-	font-family: 'GothamPro-Bold';
+	font-family: "GothamPro-Bold";
 	color: #8b92ab;
 	font-size: 20px;
 	margin-bottom: 30px;
 }
 
 .grade__subtitle {
-	font-family: 'OpenSans-Bold';
+	font-family: "OpenSans-Bold";
 	color: #fff;
 	font-size: 18px;
 	margin: 20px 0;
@@ -27,7 +35,7 @@ h1, h2, h3 {
 }
 
 .grade__list__item {
-	font-family: 'GothamPro-Bold';
+	font-family: "GothamPro-Bold";
 	color: #8b92ab;
 	font-size: 16px;
 	line-height: 1.4;
@@ -38,24 +46,24 @@ h1, h2, h3 {
 }
 
 .grade__list__item:before {
-	content: "["; 
+	content: "[";
 	color: #fff;
 	padding: 7px;
 }
 
 .grade__list__item:after {
-	content: "]"; 
+	content: "]";
 	color: #fff;
 	padding: 7px;
 }
 
 .grade__button {
-  border: 1px solid #dce0e9;
-  width: 140px;
+	border: 1px solid #dce0e9;
+	width: 140px;
 	height: 35px;
 	border-radius: 50px;
 	background-color: #284060;
-	font-family: 'OpenSans-Regular';
+	font-family: "OpenSans-Regular";
 	font-size: 14px;
 	color: #8b92ab;
 }
@@ -65,8 +73,24 @@ h1, h2, h3 {
 	color: #fff;
 }
 
+.questionCardContainer:not(:last-child) {
+	margin-bottom: 44px;
+}
+
+.questionCardContainer:not(:last-child)::after {
+	display: block;
+	background-color: #8b92ab;
+	width: 100px;
+	height: 1px;
+	margin: 42px auto 0;
+	content: "";
+}
 
 @media (min-width: 768px) {
+	.baseContainer {
+		padding-bottom: 118px;
+	}
+
 	.grade__title {
 		font-size: 25px;
 	}
@@ -76,9 +100,9 @@ h1, h2, h3 {
 	}
 
 	.grade__subtitle br {
-    display: none;
+		display: none;
 	}
-	
+
 	.grade__list {
 		margin-bottom: 35px;
 	}
@@ -86,10 +110,17 @@ h1, h2, h3 {
 	.grade__list__item {
 		font-size: 18px;
 	}
+
+	.questionCardContainer:not(:last-child) {
+		margin-bottom: 36px;
+	}
+
+	.questionCardContainer:not(:last-child)::after {
+		margin: 38px auto 0;
+	}
 }
 
-
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
 	.grade {
 		padding: 60px 0;
 	}
@@ -101,9 +132,12 @@ h1, h2, h3 {
 	.grade__list {
 		margin-bottom: 45px;
 	}
+
+	.questionCardContainer:not(:last-child) {
+		margin-bottom: 38px;
+	}
+
+	.questionCardContainer:not(:last-child)::after {
+		margin: 36px auto 0;
+	}
 }
-
-
-
-
-

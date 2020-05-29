@@ -71,6 +71,7 @@
 
     .baseContainer {
         position: relative;
+        margin: 0 auto;
     }
 
     .answersListContainer {

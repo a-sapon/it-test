@@ -11,7 +11,7 @@ const initialState = {
   startTime: 0,
   finishTime: 0,
   questions: [],
-  error: null
+  error: null,
 };
 
 const testReducer = (state = initialState, { type, payload }) => {
@@ -20,27 +20,27 @@ const testReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userId: payload,
-        startTime: new Date()
+        startTime: new Date(),
       };
     case Types.SAVE_LANGUAGE_ID:
       return {
         ...state,
-        languageId: payload
+        languageId: payload,
       };
     case Types.SAVE_LANGUAGE_TITLE:
       return {
         ...state,
-        languageTitle: payload
+        languageTitle: payload,
       };
     case Types.SAVE_ALL_QUESTION_COUNT:
       return {
         ...state,
-        allQuestionsCount: payload
+        allQuestionsCount: payload,
       };
     case Types.SAVE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: payload
+        currentQuestion: payload,
       };
     case Types.SAVE_RESULT_ANSWER:
       return {
@@ -50,18 +50,23 @@ const testReducer = (state = initialState, { type, payload }) => {
     case Types.SAVE_FINISH_TIME:
       return {
         ...state,
-        finishTime: payload
+        finishTime: payload,
       };
     case Types.SAVE_FINISH_ANSWERS_AND_QUESTIONS_RESULT:
       return {
         ...state,
-        questions: [ ...state.questions, {...payload, ...state.currentQuestion} ],
-        rightAnsweredInPercentage: Math.round(state.userRightAnswered/state.allQuestionsCount*100)
+        questions: [
+          ...state.questions,
+          { ...payload, ...state.currentQuestion },
+        ],
+        rightAnsweredInPercentage: Math.round(
+          (state.userRightAnswered / state.allQuestionsCount) * 100
+        ),
       };
     case Types.SAVE_ERROR:
       return {
         ...state,
-        error: payload
+        error: payload,
       };
     case Types.RESET_RESULT:
       return initialState;
