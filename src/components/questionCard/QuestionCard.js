@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Question from "./question/Question";
 import AnswersList from "./answersList/AnswersList";
 import Explanations from './explanations/Explanations';
+import css from './QuestionCard.module.css'
 
 
 const QuestionCard = ({ data, result }) => {
@@ -11,14 +12,14 @@ const QuestionCard = ({ data, result }) => {
   const { explanation } = result;
 
   return (
-    <>
+    <div className={css.questionCardContainer}>
       <Question question={questionText} />
       <AnswersList data={data} result={result}/>
 
       { isResultVisible && explanation &&
         (<Explanations dataText={explanation}/>)
       }
-    </>
+    </div>
   );
   
 };
@@ -40,7 +41,7 @@ QuestionCard.propTypes = {
     answerCorrectly: PropTypes.bool,
     explanation: PropTypes.string,
     rightAnswer: PropTypes.number,
-    userAnswer: PropTypes.string
+    userAnswer: PropTypes.number
   })
 
 }

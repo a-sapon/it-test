@@ -2,21 +2,35 @@
     display: none;
 }
 
-.hdrContainer {
+.titleContainer {
+    display: flex;
+    align-items: center;
+    padding: 24px 0 0 4px;
+    margin-bottom: 24px;
+}
+
+.returnLink {
+    background-image: url('../../assets/icons/return.svg');
+    background-position: 0 0;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 16px;
+}
+
+.title {
+    font-size: 14px;
+    color: #2e3038;
+}
+
+.container {
     font-family: "GothamPro", sans-serif;
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 26px;
 }
 
-.hdrTitle {
-    font-size: 14px;
-    color: #2e3038;
-    padding: 24px 0 0 24px;
-    margin: 0 0 24px;
-}
-
-.hrdCountTitle {
+.countTitle {
     font-size: 16px;
     color: #fc842c;
     text-align: center;
@@ -28,25 +42,29 @@
         display: block;
     }
 
-    .hdrContainer {
+    .hiddenForTabletPlus {
+        display: none;
+    }
+
+    .container {
         display: flex;
         justify-content: space-around;
         align-items: center;
         margin-bottom: 42px;
     }
 
-    .hdrTitle,
-    .hrdCountTitle {
+    .title,
+    .countTitle {
         font-size: 22px;
     }
 
-    .hdrTitle {
+    .title {
         color: rgba(139, 146, 171, 0.502);
         margin: 0;
         padding: 0;
     }
 
-    .hrdCountTitle {
+    .countTitle {
         display: flex;
         border-bottom: 2px solid #fc842c;
         width: 140px;
@@ -54,7 +72,7 @@
         padding-left: 8px;
     }
 
-    .hdrContainer span {
+    .container span {
         margin-right: 6px;
     }
 

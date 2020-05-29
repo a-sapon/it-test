@@ -1,7 +1,5 @@
 import React, {useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
-import { connect } from 'react-redux';
-import * as testOperations from '../../redux/test/testOperations';
 import PropTypes from 'prop-types';
 import css from './QuestionModal.module.css'
 
@@ -28,9 +26,8 @@ const QuestionModal = ({onClose, fetchCancelTest}) => {
     }
 
     const onSubmit = async () => {
+        history.push("/");
         localStorage.setItem('sessionDataTest', JSON.stringify(null));
-        history.push("/result");
-        await fetchCancelTest();
     }
 
     return(
@@ -49,11 +46,5 @@ const QuestionModal = ({onClose, fetchCancelTest}) => {
 QuestionModal.propTypes = {
     onClose: PropTypes.func
 }
-
-// export default QuestionModal;
   
-  const mapDispatchToProps = {
-    fetchCancelTest: testOperations.fetchCancelTest
-  };
-  
-  export default connect( null, mapDispatchToProps )(QuestionModal);
+export default QuestionModal;

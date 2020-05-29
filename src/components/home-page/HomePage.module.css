@@ -1,12 +1,17 @@
+.headerWrapper {
+  padding-bottom: 56px;
+}
+
 .headerBack {
   background-color: rgb(40, 64, 96);
   box-shadow: 0px 24px 40px 0px rgba(0, 0, 0, 0.13);
   margin: 0 auto;
-  width: 240px;
+  width: 100%;
   height: 353px;
   padding-top: 30px;
   margin-bottom: 30px;
 }
+
 .quoteWrapper {
   width: 222px;
   margin: 0 auto;
@@ -30,8 +35,7 @@
   line-height: 1.2;
   display: block;
   text-align: center;
-  margin-bottom: 46px;
-  height: 136px;
+  height: 182px;
 }
 
 .headerAuthor {
@@ -53,6 +57,7 @@
   color: rgb(255, 255, 255);
   margin-bottom: 6px;
 }
+
 .headerOnlineTest {
   font-size: 14px;
   font-family: 'GothamPro-Bold';
@@ -62,6 +67,7 @@
   text-align: center;
   padding-left: 18px;
 }
+
 .headerLink {
   color: rgb(252, 132, 44);
   display: inline;
@@ -69,8 +75,8 @@
 }
 
 .headerTestWrapper {
-  width: 222px;
-  margin-bottom: 50px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .headerList {
@@ -80,7 +86,7 @@
 .headerListItem {
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 24px 40px 0px rgba(0, 0, 0, 0.13);
-  width: 240px;
+  width: 100%;
   height: 269px;
   padding-top: 50px;
   margin: 0 auto;
@@ -88,10 +94,6 @@
 
 .headerListItem:not(:last-child) {
   margin-bottom: 30px;
-}
-
-.headerListItem:last-child {
-  margin-bottom: 56px;
 }
 
 .headerImage {
@@ -121,67 +123,71 @@
 }
 
 @media (min-width: 768px) {
-  .headerBack {
-    width: 655px;
-  }
 
   .quoteWrapper {
     width: 460px;
   }
+
   .headerQuote {
     font-size: 30px;
-    height: 140px;
+    height: 186px;
   }
+
   .headerAuthor {
     font-size: 16px;
   }
+
   .headerOnlineTests {
     font-size: 18px;
     display: inline;
   }
+
   .headerOnlineTest {
     font-size: 18px;
     display: inline;
     padding: 0;
   }
+
   .headerTestWrapper {
     width: 420px;
     display: block;
-    margin: 0 auto;
   }
 
   .headerList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
+  
   .headerListItem {
     width: 316px;
+    margin: 0;
   }
 
-  .headerListItem:first-child {
-    margin-right: 23px;
+  .headerListItem:not(:nth-last-child(-n+2)) {
+    margin-bottom: 36px;
   }
 }
 
-@media (min-width: 1200px) {
-  .headerBack {
+@media (min-width: 1280px) {
+  .headerWrapper {
     width: 1080px;
+    margin: 0 auto;
   }
-  .headerList {
-    display: flex;
-  }
+
   .headerListItem {
     width: 336px;
+    margin: 0;
   }
-  .headerListItem:not(:last-child) {
-    margin-right: 36px;
+
+  .headerListItem:not(:nth-last-child(-n+3)) {
+    margin-bottom: 36px;
   }
 
   .quoteWrapper {
     width: 480px;
   }
   .headerQuote {
-    height: 148px;
+    height: 196px;
   }
 }
