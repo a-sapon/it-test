@@ -23,7 +23,7 @@ const AllResults = (props) => {
   } = props.test;
 
   return (
-    <section id="results">
+    <section id="results" className={styles.baseContainer}>
       <div className={styles.grade}>
         <h1 className={styles.grade__title}>
           Результаты теста “{languageTitle}”
@@ -83,11 +83,13 @@ const AllResults = (props) => {
           };
 
           return (
-            <QuestionCard
-              key={el.questionId}
-              data={dataParams}
-              result={resultParams}
-            />
+            <div key={el.questionId} className={styles.questionCardContainer}>
+              <QuestionCard
+                key={el.questionId}
+                data={dataParams}
+                result={resultParams}
+              />
+            </div>
           );
         })}
     </section>

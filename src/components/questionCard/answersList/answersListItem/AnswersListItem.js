@@ -1,25 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import css from "./AnswersListItem.module.css";
 
 
 const AnswerListItem = ({ data, result }) => {
+  
   const { answerNumber, answerText, isResultVisible, handleChange } = data;
   const { userAnswer, rightAnswer } = result;
 
   /**
    * styles 
   */ 
-  let resultCss;
-  let correctAnswerCss = { backgroundColor: 'rgb(0, 201, 71, 0.102)' };
-  let wrongAnswerCss = { backgroundColor: 'rgb(255, 0, 0, 0.102)' };
+  let containerCss = css.answersListItem;
 
   if(result) {
-    if(answerNumber === rightAnswer) resultCss = correctAnswerCss;
-    if(answerNumber === Number(userAnswer) && rightAnswer !== Number(userAnswer)) resultCss = wrongAnswerCss;   
+    if(answerNumber === rightAnswer) containerCss = css.answersListItem + ' ' + css.answersListItemCorrect;
+    if(answerNumber === userAnswer && rightAnswer !== userAnswer) containerCss = css.answersListItem + ' ' + css.answersListItemIncorrect;
   }
 
   return (
-    <li style={resultCss}>  
+    <li className={containerCss}>  
       <label>
         <input
           name="answer"
@@ -41,6 +41,11 @@ AnswerListItem.propTypes = {
     answerText: PropTypes.string.isRequired,
     handleChange: PropTypes.func,
   }),
+
+  result: PropTypes.shape({
+    rightAnswer: PropTypes.number,
+    userAnswer: PropTypes.number
+  })
 };
 
 export default AnswerListItem;

@@ -51,7 +51,7 @@ const HomePage = (props) => {
       {props.state !== undefined && props.state.isLoading ? (
         <Spinner />
       ) : (
-        <div className='header-wrapper'>
+        <div className={styles.headerWrapper}>
           <div className={styles.headerBack}>
             <span className={styles.headerQuoteIcon}>
               <span style={{ display: 'none' }}>

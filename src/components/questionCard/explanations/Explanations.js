@@ -6,10 +6,10 @@ import css from './Explanations.module.css';
 const Explanations = ({ dataText }) => {
 
   return (
-    <>
+    <div className={css.container}>
       <h4 className={css.title}>Пояснения:</h4>
       <p className={css.description}>{ dataText }</p>
-    </>
+    </div>
   );
 };
 

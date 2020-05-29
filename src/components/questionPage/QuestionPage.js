@@ -11,16 +11,17 @@ import QuestionModal from '../questionModal/QuestionModal';
 import Spinner from '../Spinner/Spinner';
 import css from './QuestionPage.module.css';
 
-const QuestionPage = (props) => {
-  const {
-    location: { state },
-    languageId,
-    isLoading,
-    userId,
-    fetchStartingQuestion,
-    fetchNextQuestionAndGiveAnswer,
-  } = props;
-  console.log('isLoading', isLoading);
+
+const QuestionPage = (props) => { 
+  
+  const { 
+      location: { state },
+      languageId,
+      isLoading,
+      userId,
+      fetchStartingQuestion,
+      fetchNextQuestionAndGiveAnswer
+    } = props;
 
   let history = useHistory();
 
@@ -61,12 +62,10 @@ const QuestionPage = (props) => {
     }
 
     const data = JSON.parse(localStorage.getItem('sessionDataTest'));
-    console.log('data', data);
-
-    if (data) {
-      if (getStateIdValidation(state))
-        languageId !== state.id && fetchData(state.id);
-
+    
+    if(data) {
+      if(getStateIdValidation(state)) languageId !== state.id && fetchData(state.id);
+      
       data.result && delete data.result;
       dataRecorder(data);
       getFinalResultCallback(data);
@@ -101,9 +100,9 @@ const QuestionPage = (props) => {
   /**
    * Scroll function
    */
-  const scrollTop = function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const scrollTop = function() {
+    window.scrollTo({ top: 46, behavior: 'smooth' });
+  } 
 
   const scrollDown = function () {
     window.scrollTo({ top: 2000, behavior: 'smooth' });
@@ -182,7 +181,7 @@ const QuestionPage = (props) => {
   return (
     <>
       {cardData !== null && (
-        <div className={css.questionPageContainer}>
+        <section id="test" className={css.questionPageContainer}>
           <QuestionHdr data={hdrData} handleClick={handleModalWindow} />
           <QuestionCard
             data={{
@@ -201,7 +200,7 @@ const QuestionPage = (props) => {
             </button>
           )}
           <div className={css.greyBG}></div>
-        </div>
+        </section>
       )}
 
       {isLoading && <Spinner />}

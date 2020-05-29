@@ -23,7 +23,7 @@ const AnswersList = ({ data, result }) => {
   
   const styles = {};
 
-  if(!image) styles.answersListContainer = { marginTop: "44px" }
+  if(!image) styles.answersListContainer = { marginTop: "44px" };
 
   return (
     <div className={css.baseContainer}>
@@ -36,7 +36,7 @@ const AnswersList = ({ data, result }) => {
 
         <div className={css.answersListContainer}  style={styles.answersListContainer}>
 
-          <ul>
+          <ul className={css.answersList}>
             {answers.map((el) => {
 
               const elProps={ 
@@ -49,7 +49,7 @@ const AnswersList = ({ data, result }) => {
               return (
                 <AnswersListItem 
                   key={el._id} 
-                  data={ elProps } 
+                  data={elProps} 
                   result={result}
                 />
               )
@@ -112,7 +112,7 @@ AnswersList.propTypes = {
   result: PropTypes.shape({
     answerCorrectly: PropTypes.bool,
     rightAnswer: PropTypes.number,
-    userAnswer: PropTypes.string
+    userAnswer: PropTypes.number
   })
 
 }
