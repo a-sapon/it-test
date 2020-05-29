@@ -49,8 +49,6 @@ const QuestionModal = ({onClose, fetchCancelTest}) => {
 QuestionModal.propTypes = {
     onClose: PropTypes.func
 }
-
-// export default QuestionModal;
   
   const mapDispatchToProps = {
     fetchCancelTest: testOperations.fetchCancelTest
