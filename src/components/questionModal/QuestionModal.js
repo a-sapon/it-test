@@ -26,7 +26,7 @@ const QuestionModal = ({ onClose }) => {
     }
 
     const onSubmit = async () => {
-        history.push("/");
+        history.push("/result");
         localStorage.setItem('sessionDataTest', JSON.stringify(null));
     }
 
