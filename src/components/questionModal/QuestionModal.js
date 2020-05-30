@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import css from './QuestionModal.module.css'
+import * as testActions from '../../redux/test/testActions';
+import { connect } from 'react-redux';
 
 const QuestionModal = ({ onClose }) => {
     let backdropRef = useRef(null);
@@ -26,6 +28,7 @@ const QuestionModal = ({ onClose }) => {
     }
 
     const onSubmit = async () => {
+        this.props.saveFinishTime();
         history.push("/result");
         localStorage.setItem('sessionDataTest', JSON.stringify(null));
     }
@@ -46,5 +49,10 @@ const QuestionModal = ({ onClose }) => {
 QuestionModal.propTypes = {
     onClose: PropTypes.func
 }
+
+const mapDispatchToProps = {
+  saveFinishTime: testActions.saveFinishTime
+}
+
   
-export default QuestionModal;
+export default connect(null, mapDispatchToProps)(QuestionModal);
