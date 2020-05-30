@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import testPagestyle from './testPage.module.css';
+import { setItem } from '../../redux/test/testActions';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 const testPage = (props) => {
   const { item } = props.location.state;
@@ -13,6 +16,8 @@ const testPage = (props) => {
     return output;
   };
   const description = item.description.split('</br></br>');
+
+  props.setItem(item);
   return (
     <div className={testPagestyle.sectionDescription}>
       <div className={testPagestyle.sectionTestPage}>
@@ -70,4 +75,4 @@ const testPage = (props) => {
   );
 };
 
-export default withRouter(testPage);
+export default compose(withRouter, connect(null, { setItem }))(testPage);

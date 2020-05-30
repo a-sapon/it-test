@@ -10,6 +10,7 @@ const Types = {
     'test/SAVE_FINISH_ANSWERS_AND_QUESTIONS_RESULT',
   RESET_RESULT: 'test/RESET_RESULT',
   SAVE_ERROR: 'test/SAVE_ERROR',
+  SET_ITEM: 'SET_ITEM'
 };
 
 export default Types;

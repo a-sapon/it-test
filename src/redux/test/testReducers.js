@@ -12,6 +12,7 @@ const initialState = {
   finishTime: 0,
   questions: [],
   error: null,
+  item: null
 };
 
 const testReducer = (state = initialState, { type, payload }) => {
@@ -70,6 +71,8 @@ const testReducer = (state = initialState, { type, payload }) => {
       };
     case Types.RESET_RESULT:
       return initialState;
+    case Types.SET_ITEM:
+      return {...state, item: payload}
     default:
       return state;
   }

@@ -22,6 +22,8 @@ const AllResults = (props) => {
     questions,
   } = props.test;
 
+  console.log('item: ', props.test)
+
   return (
     <section id="results" className={styles.baseContainer}>
       <div className={styles.grade}>
@@ -98,7 +100,7 @@ const AllResults = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  test: state.test,
+  test: state.test
 });
 
 export default connect(mapStateToProps)(AllResults);
