@@ -2,7 +2,7 @@ button {
     outline: none;
 }
 
-.questionPageContainer {
+.container {
     padding-bottom: 108px;
     min-height: 92vh;
 }
@@ -28,7 +28,7 @@ button {
 
 
 @media screen and (min-width: 768px) {
-    .questionPageContainer {
+    .container {
         position: relative;
         min-height: 84vh;
     }
@@ -50,7 +50,7 @@ button {
 }
 
 @media screen and (min-width: 1280px) {
-    .questionPageContainer {
+    .container {
         max-width: 690px;
         margin: 0 auto;
     }

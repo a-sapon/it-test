@@ -11,16 +11,16 @@ const AnswerListItem = ({ data, result }) => {
   /**
    * styles 
   */ 
-  let containerCss = css.answersListItem;
+  let containerCss = css.listItem;
 
   if(result) {
-    if(answerNumber === rightAnswer) containerCss = css.answersListItem + ' ' + css.answersListItemCorrect;
-    if(answerNumber === userAnswer && rightAnswer !== userAnswer) containerCss = css.answersListItem + ' ' + css.answersListItemIncorrect;
+    if(answerNumber === rightAnswer) containerCss = css.listItem + ' ' + css.listItemCorrect;
+    if(answerNumber === userAnswer && rightAnswer !== userAnswer) containerCss = css.listItem + ' ' + css.listItemIncorrect;
   }
 
   return (
     <li className={containerCss}>  
-      <label>
+      <label className={css.customRadio}>
         <input
           name="answer"
           value={answerNumber}

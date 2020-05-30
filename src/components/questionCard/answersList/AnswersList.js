@@ -21,9 +21,12 @@ const AnswersList = ({ data, result }) => {
 
   const { answers, image, imageMobile, isResultVisible, handleChange, handleClick, handleSubmit } = data;
   
-  const styles = {};
+  const styles = {
+    catImgContainer: css.catImgInsertionContainer
+  };
 
-  if(!image) styles.answersListContainer = { marginTop: "44px" };
+  if(!image) styles.formContainer = { marginTop: "44px" };
+  if(result.answerCorrectly) styles.catImgContainer = css.catImgInsertionContainer + ' ' + css.catImgInsertionContainerCorrect;
 
   return (
     <div className={css.baseContainer}>
@@ -32,11 +35,11 @@ const AnswersList = ({ data, result }) => {
         <QuestionImage mobileImg={IMG_STATIC_PAGE + imageMobile} desktopImg={IMG_STATIC_PAGE + image}/>
       )}
 
-      <form  className={css.formContainer}  style={styles.answersListContainer} onSubmit={handleSubmit}>
+      <form  className={css.formContainer}  style={styles.formContainer} onSubmit={handleSubmit}>
 
-        <div className={css.answersListContainer}  style={styles.answersListContainer}>
+        <div className={css.listContainer}>
 
-          <ul className={css.answersList}>
+          <ul className={css.list}>
             {answers.map((el) => {
 
               const elProps={ 
@@ -58,23 +61,27 @@ const AnswersList = ({ data, result }) => {
 
           </ul>
 
-          {isResultVisible && result &&
-          
-            (result.answerCorrectly ? (
-              <img
-                className={css.catImgInsertion}
-                alt="cat_helper"
-                src={happyCatArray[getRandomInt(3)]}
-              />
-            ) : (
-              <img
-                className={css.catImgInsertion}
-                alt="cat_helper"
-                src={pensiveCatArray[getRandomInt(2)]}
-              />
-            ))
+          <div className={styles.catImgContainer}>
             
-          }
+            {isResultVisible && result &&
+          
+              (result.answerCorrectly ? (
+                <img
+                  className={css.catImgInsertion}
+                  alt="cat_helper"
+                  src={happyCatArray[getRandomInt(3)]}
+                />
+              ) : (
+                <img
+                  className={css.catImgInsertion}
+                  alt="cat_helper"
+                  src={pensiveCatArray[getRandomInt(2)]}
+                />
+              ))
+          
+            }
+
+          </div>
 
         </div>
           

@@ -80,6 +80,7 @@ const AllResults = (props) => {
             userAnswer: el.userAnswer,
             rightAnswer: el.rightAnswer,
             explanation: el.explanation,
+            questionNumber: `${el.questionNumber}.`
           };
 
           return (

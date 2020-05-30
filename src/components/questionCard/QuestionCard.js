@@ -9,11 +9,11 @@ import css from './QuestionCard.module.css'
 const QuestionCard = ({ data, result }) => {
 
   const { questionText, isResultVisible } = data;
-  const { explanation } = result;
+  const { explanation, questionNumber } = result;
 
   return (
-    <div className={css.questionCardContainer}>
-      <Question question={questionText} />
+    <div className={css.container}>
+      <Question question={questionText} number={questionNumber}/>
       <AnswersList data={data} result={result}/>
 
       { isResultVisible && explanation &&

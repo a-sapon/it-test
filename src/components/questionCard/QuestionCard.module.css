@@ -1,5 +1,5 @@
 @media screen and (min-width: 1280px) {
-    .questionCardContainer {
+    .container {
         max-width: 690px;
         margin: 0 auto;
     }

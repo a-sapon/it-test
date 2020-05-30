@@ -13,6 +13,7 @@ import {
   fetchResultError
 } from './testActions';
 
+
 axios.defaults.baseURL = 'https://test.goit.co.ua/api';
 
 
@@ -57,7 +58,7 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
 
     .then((response) => {
       const { data } = response;
-
+      
       Object.assign(data, {result: {...data.result, userAnswer:  Number(data.result.userAnswer)}});
 
       const { questionExplanation, answerCorrectly, userAnswer, rightAnswer } = data.result;
@@ -69,6 +70,7 @@ export const fetchNextQuestionAndGiveAnswer = (userId, params) => dispatch => {
           userAnswerCorrectly: answerCorrectly,
           userAnswer,
           rightAnswer,
+          questionNumber: data.finalResult ? data.allQuestionsCount : data.questionNumber-1
         })
       );
       dispatch(saveCurrentQuestion(data.nextQuestion));

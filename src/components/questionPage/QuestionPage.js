@@ -96,6 +96,7 @@ const QuestionPage = (props) => {
     setAnswerNumber(0);
     localStorage.setItem('sessionDataTest', JSON.stringify(data));
   }
+  
 
   /**
    * Scroll function
@@ -181,7 +182,7 @@ const QuestionPage = (props) => {
   return (
     <>
       {cardData !== null && (
-        <section id="test" className={css.questionPageContainer}>
+        <section id="test" className={css.container}>
           <QuestionHdr data={hdrData} handleClick={handleModalWindow} />
           <QuestionCard
             data={{

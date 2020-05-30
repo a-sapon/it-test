@@ -1,20 +1,20 @@
-.answersListItem {
+.listItem {
     position: relative;
     display: flex;
     align-items: center;
     padding: 4px 24px 4px 44px;
 }
 
-.answersListItemCorrect {
+.listItemCorrect {
     background-color: #00c9471a;
 }
 
-.answersListItemIncorrect {
+.listItemIncorrect {
     background-color: #ff00001a;
 }
 
-.answersListItemCorrect:before,
-.answersListItemIncorrect:before {
+.listItemCorrect:before,
+.listItemIncorrect:before {
     background-position: 6px center;
     background-size: 18px 18px;
     background-repeat: no-repeat;
@@ -25,19 +25,19 @@
     content: '';
 }
 
-.answersListItemCorrect:before {
+.listItemCorrect:before {
     background-image: url('../../../../assets/icons/correct.svg');
 }
 
-.answersListItemIncorrect:before {
+.listItemIncorrect:before {
     background-image: url('../../../../assets/icons/incorrect.svg');
 }
 
-.answersListItem:not(:last-child) {
+.listItem:not(:last-child) {
     margin-bottom: 8px;
 }
 
-.answersListItem label {
+.listItem label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,15 +49,73 @@
     margin: 0;
 }
 
-.answersListItem input {
+.listItem input {
     cursor: pointer;
     margin-right: 14px;
 }
 
+.customRadio input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.customRadio span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* styles for radio buttons */
+.customRadio span::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid #b9c9d4;
+    border-radius: 50%;
+    margin-right: 14px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 4px 4px;
+}
+
+/* styles for the checked radio button */
+.customRadio input:checked+span::before {
+    background-color: #fff;
+    background-image: url('../../../../assets/icons/point.svg');
+}
+
 @media screen and (min-width: 768px) {
 
-    .answersListItem {
+    .listItem {
         width: 100%;
         padding-left: 62px;
     }
+}
+
+@media screen and (min-width: 1280px) {
+
+    /* styles when hovering over a radio not in checked state*/
+    .customRadio input:not(:disabled):not(:checked)+span:hover::before {
+        transform: scale(1.1);
+    }
+
+    /* hover styles on the radio button */
+    .customRadio input:not(:disabled)+span:hover::before {
+        box-shadow: 0 0 12px 0.2rem #007bff40;
+        border-color: #b3d7ff;
+    }
+
+    /* styles for the active radio button (when you click on it) */
+    .customRadio input:not(:disabled):active+span::before {
+        background-color: #b3d7ff;
+        border-color: #b3d7ff;
+    }    
 }
