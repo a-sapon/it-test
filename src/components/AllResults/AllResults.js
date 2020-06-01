@@ -12,6 +12,26 @@ const TestDuration = ({ start, finish }) => {
   return duration;
 };
 
+const ResultTitle = ({ percentage }) => {
+  let title = '';
+  switch (true) {
+    case percentage < 25:
+      title = 'Похоже ты не все домашки сдавал на отлично';
+      break;
+    case percentage > 25 && percentage < 70:
+      title = 'Молодец! Но можно лучше';
+      break;
+    case percentage > 70:
+      title = 'Молодец! Отличный результат';
+      console.log(percentage);
+      break;
+    default:
+      title = 'Ошибка';
+      break;
+  }
+  return title;
+};
+
 const AllResults = (props) => {
   const {
     languageTitle,
@@ -21,12 +41,13 @@ const AllResults = (props) => {
     startTime,
     finishTime,
     questions,
+    item,
   } = props.test;
 
-  console.log('item: ' , props.location.state.item);
+  console.log('item: ', props.location.state.item);
 
   return (
-    <section id='results' className={styles.baseContainer}>
+    <section id="results" className={styles.baseContainer}>
       <div className={styles.grade}>
         <h1 className={styles.grade__title}>
           Результаты теста “{languageTitle}”
@@ -34,18 +55,17 @@ const AllResults = (props) => {
         <Circle
           progress={rightAnsweredInPercentage}
           animate={true}
-          animationDuration='1s'
+          animationDuration="1s"
           responsive={false}
-          size='155'
-          lineWidth='40'
-          progressColor='rgb(255, 108, 0)'
-          bgColor='#8b92ab'
-          textColor='#fff'
+          size="155"
+          lineWidth="40"
+          progressColor="rgb(255, 108, 0)"
+          bgColor="#8b92ab"
+          textColor="#fff"
           textStyle={{ font: 'bold 6em OpenSans-Bold, sans-serif' }}
         />
         <h2 className={styles.grade__subtitle}>
-          Молодец! <br />
-          Но можно лучше{')))'}
+          <ResultTitle percentage={rightAnsweredInPercentage} />
         </h2>
         <ul className={styles.grade__list}>
           <li className={styles.grade__list__item}>
@@ -61,7 +81,14 @@ const AllResults = (props) => {
             </span>
           </li>
         </ul>
-        <Link to='/'>
+        <Link
+          to={{
+            pathname: `/test`,
+            state: {
+              item,
+            },
+          }}
+        >
           <button className={styles.grade__button}>
             <span>Пройти еще раз</span>
           </button>
