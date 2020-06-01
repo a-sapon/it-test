@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
 import QuestionCard from '../questionCard/QuestionCard';
@@ -11,6 +12,28 @@ const TestDuration = ({ start, finish }) => {
   return duration;
 };
 
+const ResultTitle = ({percentage}) => {
+  console.log(percentage)
+
+  let title = '';
+  switch (true) {
+    case percentage < 25:
+      title = 'Похоже ты не все домашки сдавал на отлично';
+      break;
+    case percentage > 25 && percentage < 70:
+      title = 'Молодец! Но можно лучше';
+      break;
+    case percentage > 70:
+      title ='Молодец! &lt;br /&gt;Отличный результат11';
+      console.log(percentage)
+      break;
+    default:
+      title='Ошибка';
+      break
+  }
+  return title;
+}
+
 const AllResults = (props) => {
   const {
     languageTitle,
@@ -20,9 +43,10 @@ const AllResults = (props) => {
     startTime,
     finishTime,
     questions,
+    item
   } = props.test;
 
-  console.log('item: ', props.test)
+  //console.log('item: ', props.test)
 
   return (
     <section id="results" className={styles.baseContainer}>
@@ -43,8 +67,7 @@ const AllResults = (props) => {
           textStyle={{ font: 'bold 6em OpenSans-Bold, sans-serif' }}
         />
         <h2 className={styles.grade__subtitle}>
-          Молодец! <br />
-          Но можно лучше{')))'}
+          <ResultTitle percentage={rightAnsweredInPercentage}/>
         </h2>
         <ul className={styles.grade__list}>
           <li className={styles.grade__list__item}>
@@ -60,7 +83,14 @@ const AllResults = (props) => {
             </span>
           </li>
         </ul>
-        <Link to="/">
+        <Link
+          to={{
+            pathname: `/test`,
+            state: {
+              item
+            },
+          }}  
+        >
           <button className={styles.grade__button}>
             <span>Пройти еще раз</span>
           </button>
@@ -103,4 +133,4 @@ const mapStateToProps = (state) => ({
   test: state.test
 });
 
-export default connect(mapStateToProps)(AllResults);
+export default compose(withRouter, connect(mapStateToProps))(AllResults);
