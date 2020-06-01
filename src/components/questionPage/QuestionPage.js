@@ -43,7 +43,10 @@ const QuestionPage = (props) => {
       if (!data.finalResult) return;
 
       localStorage.setItem('sessionDataTest', JSON.stringify(null));
-      history.push('/result');
+      history.push({
+        pathname: '/result',
+        state: { item: state.item }
+      });
     },
     [history]
   );

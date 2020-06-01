@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
 import QuestionCard from '../questionCard/QuestionCard';
+import { compose } from 'redux';
 
 const TestDuration = ({ start, finish }) => {
   const diff = new Date(finish).getTime() - new Date(start).getTime();
@@ -22,10 +23,10 @@ const AllResults = (props) => {
     questions,
   } = props.test;
 
-  console.log('test: ', props.test)
+  console.log('item: ' , props.location.state.item);
 
   return (
-    <section id="results" className={styles.baseContainer}>
+    <section id='results' className={styles.baseContainer}>
       <div className={styles.grade}>
         <h1 className={styles.grade__title}>
           Результаты теста “{languageTitle}”
@@ -33,13 +34,13 @@ const AllResults = (props) => {
         <Circle
           progress={rightAnsweredInPercentage}
           animate={true}
-          animationDuration="1s"
+          animationDuration='1s'
           responsive={false}
-          size="155"
-          lineWidth="40"
-          progressColor="rgb(255, 108, 0)"
-          bgColor="#8b92ab"
-          textColor="#fff"
+          size='155'
+          lineWidth='40'
+          progressColor='rgb(255, 108, 0)'
+          bgColor='#8b92ab'
+          textColor='#fff'
           textStyle={{ font: 'bold 6em OpenSans-Bold, sans-serif' }}
         />
         <h2 className={styles.grade__subtitle}>
@@ -60,7 +61,7 @@ const AllResults = (props) => {
             </span>
           </li>
         </ul>
-        <Link to="/">
+        <Link to='/'>
           <button className={styles.grade__button}>
             <span>Пройти еще раз</span>
           </button>
@@ -82,7 +83,7 @@ const AllResults = (props) => {
             userAnswer: el.userAnswer,
             rightAnswer: el.rightAnswer,
             explanation: el.explanation,
-            questionNumber: `${el.questionNumber}.`
+            questionNumber: `${el.questionNumber}.`,
           };
 
           return (
@@ -100,7 +101,7 @@ const AllResults = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  test: state.test
+  test: state.test,
 });
 
-export default connect(mapStateToProps)(AllResults);
+export default compose(withRouter, connect(mapStateToProps))(AllResults);

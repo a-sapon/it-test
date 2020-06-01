@@ -59,6 +59,7 @@ const testPage = (props) => {
           to={{
             pathname: 'question',
             state: {
+              item,
               id: item.languageId,
             },
           }}
