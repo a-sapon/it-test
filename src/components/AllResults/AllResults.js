@@ -33,6 +33,7 @@ const ResultTitle = ({ percentage }) => {
   return title;
 };
 
+console.log('item: ' , props.location.state.item);
 const AllResults = (props) => {
   const {
     languageTitle,
