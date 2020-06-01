@@ -13,8 +13,6 @@ const TestDuration = ({ start, finish }) => {
 };
 
 const ResultTitle = ({percentage}) => {
-  console.log(percentage)
-
   let title = '';
   switch (true) {
     case percentage < 25:
