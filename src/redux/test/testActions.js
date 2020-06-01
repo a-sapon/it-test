@@ -48,8 +48,3 @@ export const fetchResultError = (string) => ({
   type: Types.SAVE_ERROR,
   payload: string,
 });
-
-export const setItem = (languageObj) => ({
-  type: Types.SET_ITEM,
-  payload: languageObj,
-});

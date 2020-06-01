@@ -12,7 +12,7 @@ const initialState = {
   finishTime: 0,
   questions: [],
   error: null,
-  item: null
+  item: null,
 };
 
 const testReducer = (state = initialState, { type, payload }) => {
@@ -46,7 +46,9 @@ const testReducer = (state = initialState, { type, payload }) => {
     case Types.SAVE_RESULT_ANSWER:
       return {
         ...state,
-        userRightAnswered: payload ? state.userRightAnswered + 1 : state.userRightAnswered
+        userRightAnswered: payload
+          ? state.userRightAnswered + 1
+          : state.userRightAnswered,
       };
     case Types.SAVE_FINISH_TIME:
       return {
@@ -71,8 +73,6 @@ const testReducer = (state = initialState, { type, payload }) => {
       };
     case Types.RESET_RESULT:
       return initialState;
-    case Types.SET_ITEM:
-      return {...state, item: payload}
     default:
       return state;
   }

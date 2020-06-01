@@ -22,7 +22,7 @@ const AllResults = (props) => {
     questions,
   } = props.test;
 
-  console.log('item: ', props.test)
+  console.log('test: ', props.test)
 
   return (
     <section id="results" className={styles.baseContainer}>
