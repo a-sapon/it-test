@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
 import QuestionCard from '../questionCard/QuestionCard';
@@ -43,8 +44,6 @@ const AllResults = (props) => {
     questions,
     item,
   } = props.test;
-
-  console.log('item: ', props.location.state.item);
 
   return (
     <section id="results" className={styles.baseContainer}>
