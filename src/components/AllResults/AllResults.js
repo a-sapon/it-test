@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
 import QuestionCard from '../questionCard/QuestionCard';
-import { compose } from 'redux';
 
 const TestDuration = ({ start, finish }) => {
   const diff = new Date(finish).getTime() - new Date(start).getTime();
@@ -33,7 +32,6 @@ const ResultTitle = ({ percentage }) => {
   return title;
 };
 
-console.log('item: ' , props.location.state.item);
 const AllResults = (props) => {
   const {
     languageTitle,
@@ -43,11 +41,12 @@ const AllResults = (props) => {
     startTime,
     finishTime,
     questions,
-    item,
   } = props.test;
 
+  const item = props.location.state.item;
+
   return (
-    <section id="results" className={styles.baseContainer}>
+    <section id='results' className={styles.baseContainer}>
       <div className={styles.grade}>
         <h1 className={styles.grade__title}>
           Результаты теста “{languageTitle}”
@@ -55,13 +54,13 @@ const AllResults = (props) => {
         <Circle
           progress={rightAnsweredInPercentage}
           animate={true}
-          animationDuration="1s"
+          animationDuration='1s'
           responsive={false}
-          size="155"
-          lineWidth="40"
-          progressColor="rgb(255, 108, 0)"
-          bgColor="#8b92ab"
-          textColor="#fff"
+          size='155'
+          lineWidth='40'
+          progressColor='rgb(255, 108, 0)'
+          bgColor='#8b92ab'
+          textColor='#fff'
           textStyle={{ font: 'bold 6em OpenSans-Bold, sans-serif' }}
         />
         <h2 className={styles.grade__subtitle}>
