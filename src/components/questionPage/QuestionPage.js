@@ -11,17 +11,15 @@ import QuestionModal from '../questionModal/QuestionModal';
 import Spinner from '../Spinner/Spinner';
 import css from './QuestionPage.module.css';
 
-
-const QuestionPage = (props) => { 
-  
-  const { 
-      location: { state },
-      languageId,
-      isLoading,
-      userId,
-      fetchStartingQuestion,
-      fetchNextQuestionAndGiveAnswer
-    } = props;
+const QuestionPage = (props) => {
+  const {
+    location: { state },
+    languageId,
+    isLoading,
+    userId,
+    fetchStartingQuestion,
+    fetchNextQuestionAndGiveAnswer,
+  } = props;
 
   let history = useHistory();
 
@@ -45,7 +43,7 @@ const QuestionPage = (props) => {
       localStorage.setItem('sessionDataTest', JSON.stringify(null));
       history.push({
         pathname: '/result',
-        state: { item: state.item }
+        state: { item: state.item },
       });
     },
     [history]
@@ -65,10 +63,11 @@ const QuestionPage = (props) => {
     }
 
     const data = JSON.parse(localStorage.getItem('sessionDataTest'));
-    
-    if(data) {
-      if(getStateIdValidation(state)) languageId !== state.id && fetchData(state.id);
-      
+
+    if (data) {
+      if (getStateIdValidation(state))
+        languageId !== state.id && fetchData(state.id);
+
       data.result && delete data.result;
       dataRecorder(data);
       getFinalResultCallback(data);
@@ -99,14 +98,13 @@ const QuestionPage = (props) => {
     setAnswerNumber(0);
     localStorage.setItem('sessionDataTest', JSON.stringify(data));
   }
-  
 
   /**
    * Scroll function
    */
-  const scrollTop = function() {
+  const scrollTop = function () {
     window.scrollTo({ top: 46, behavior: 'smooth' });
-  } 
+  };
 
   const scrollDown = function () {
     window.scrollTo({ top: 2000, behavior: 'smooth' });
@@ -185,7 +183,7 @@ const QuestionPage = (props) => {
   return (
     <>
       {cardData !== null && (
-        <section id="test" className={css.container}>
+        <section id='test' className={css.container}>
           <QuestionHdr data={hdrData} handleClick={handleModalWindow} />
           <QuestionCard
             data={{
