@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import Circle from 'react-circle';
 import styles from './AllResults.module.css';
 import QuestionCard from '../questionCard/QuestionCard';
-import { compose } from 'redux';
 
 const TestDuration = ({ start, finish }) => {
   const diff = new Date(finish).getTime() - new Date(start).getTime();
@@ -33,7 +32,6 @@ const ResultTitle = ({ percentage }) => {
   return title;
 };
 
-console.log('item: ' , props.location.state.item);
 const AllResults = (props) => {
   const {
     languageTitle,
@@ -43,9 +41,9 @@ const AllResults = (props) => {
     startTime,
     finishTime,
     questions,
-    item,
   } = props.test;
-
+  
+  console.log('item: ' , props.location.state.item);
   return (
     <section id="results" className={styles.baseContainer}>
       <div className={styles.grade}>
@@ -85,7 +83,7 @@ const AllResults = (props) => {
           to={{
             pathname: `/test`,
             state: {
-              item,
+              item: props.location.state.item,
             },
           }}
         >
