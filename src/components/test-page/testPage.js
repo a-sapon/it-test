@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import testPagestyle from './testPage.module.css';
 
-const testPage = (props) => {
+const TestPage = (props) => {
   const { item } = props.location.state;
   const dataGet = (d) => {
     let array = d.toString().split('-');
@@ -72,4 +72,4 @@ const testPage = (props) => {
   );
 };
 
-export default withRouter(testPage);
+export default withRouter(TestPage);

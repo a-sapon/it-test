@@ -46,7 +46,7 @@ const QuestionPage = (props) => {
         state: { item: state.item },
       });
     },
-    [history]
+    [history, state.item]
   );
 
   useEffect(() => {

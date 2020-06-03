@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { Nav } from './Navbar/Nav';
 import styles from './App.module.css';
 import Spinner from './Spinner/Spinner';
@@ -10,7 +10,7 @@ const HomePage = lazy(() =>
 
 const TestDescriptionPage = lazy(() =>
   import(
-    './test-page/testPage' /* webpackChunkName: "test-description-block" */
+    './test-page/TestPage' /* webpackChunkName: "test-description-block" */
   )
 );
 
@@ -26,21 +26,26 @@ const FeedbackPage = lazy(() =>
   import('./FeedbackPage/FeedbackPage' /* webpackChunkName: "feedback-block" */)
 );
 
-function App() {
+function App({ location }) {
   return (
     <div className={styles.container}>
       <Nav />
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/test' component={TestDescriptionPage} />
-          <Route path='/question' component={QuestionPage} />
-          <Route path='/result' component={ResultsPage} />
+          {location.state && (
+            <Route path='/test' component={TestDescriptionPage} />
+          )}
+          {location.state && (
+            <Route path='/question' component={QuestionPage} />
+          )}
+          {location.state && <Route path='/result' component={ResultsPage} />}
           <Route path='/feedback' component={FeedbackPage} />
+          <Redirect to='/' />
         </Switch>
       </Suspense>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
