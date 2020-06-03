@@ -10,7 +10,7 @@ const HomePage = lazy(() =>
 
 const TestPage = lazy(() =>
   import(
-    './test-page/TestPage' /* webpackChunkName: "test-description" */
+    './test-page/testPage' /* webpackChunkName: "test-description" */
   )
 );
 
