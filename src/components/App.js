@@ -5,25 +5,25 @@ import styles from './App.module.css';
 import Spinner from './Spinner/Spinner';
 
 const HomePage = lazy(() =>
-  import('./home-page/HomePage' /* webpackChunkName: "home-block" */)
+  import('./home-page/HomePage' /* webpackChunkName: "home" */)
 );
 
-const TestDescriptionPage = lazy(() =>
+const TestPage = lazy(() =>
   import(
-    './test-page/TestPage' /* webpackChunkName: "test-description-block" */
+    './test-page/TestPage' /* webpackChunkName: "test-description" */
   )
 );
 
 const QuestionPage = lazy(() =>
-  import('./questionPage/QuestionPage' /* webpackChunkName: "question-block" */)
+  import('./questionPage/QuestionPage' /* webpackChunkName: "question" */)
 );
 
 const ResultsPage = lazy(() =>
-  import('./AllResults/AllResults' /* webpackChunkName: "result-block" */)
+  import('./AllResults/AllResults' /* webpackChunkName: "result" */)
 );
 
 const FeedbackPage = lazy(() =>
-  import('./FeedbackPage/FeedbackPage' /* webpackChunkName: "feedback-block" */)
+  import('./FeedbackPage/FeedbackPage' /* webpackChunkName: "feedback" */)
 );
 
 function App({ location }) {
@@ -34,7 +34,7 @@ function App({ location }) {
         <Switch>
           <Route exact path='/' component={HomePage} />
           {location.state && (
-            <Route path='/test' component={TestDescriptionPage} />
+            <Route path='/test' component={TestPage} />
           )}
           {location.state && (
             <Route path='/question' component={QuestionPage} />
